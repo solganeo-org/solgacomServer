@@ -1,0 +1,137 @@
+'use strict'
+
+var dbConn = require('../config/db.config');
+
+class Site {
+
+    /**
+     * Creates a Site from a site JSON object.
+     * 
+     * @param  {Site} site JSON Site
+     * 
+     */
+    constructor(site) {
+
+        this.id                 =   site.id;
+        this.name               =   site.name;
+        this.url                =   site.url;
+        this.domain             =   site.domain;
+        this.icon_path          =   site.icon_path;
+        this.active             =   site.active;
+
+    }
+
+    /**
+     * Generates a INSERT query and executes it within the Database
+     * 
+     * @param   {Site}      site     JSON site
+     * @param   {Result}    result      Result MySQL object
+     * 
+     * @returns {Result}    result MySQL object
+     */
+    static create(site, result) {
+
+        dbConn.query("INSERT INTO site SET ?", site , function(err, res){
+
+            (err) ? result(err, null) : result(null, res.insertId);
+
+        });
+
+    }
+
+    /**
+     * Search an site based on its id field
+     * 
+     * @param   {int}    id     site id
+     * @param   {Result} result Result MySQL object
+     * 
+     * @returns {Result} site 
+     */
+    static findById(id, result) {
+
+        dbConn.query("SELECT * FROM site WHERE id = ?", id, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
+    /**
+     * Search an site based on its email field
+     * 
+     * @param   {string}     email   email site
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result}    site JSON if there is no error
+     */
+    static findByEmail(email, result) {
+
+        dbConn.query("SELECT * FROM site WHERE email = ?", email, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
+    /**
+     * Search all the site
+     * 
+     * @param   {int}        id      site id
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result}    Array list of site if there is no error
+     */
+    static findAll(result) {
+
+        dbConn.query("SELECT * FROM site", function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
+
+    /**
+     * Update an site based on its id
+     * 
+     * @param   {int}        id      site id
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result} Result MySQL Object
+     */
+    static update(id, site, result) {
+
+        dbConn.query(`UPDATE site 
+                        SET endpoint = ?, auth_key = ?, auth_p256dh = ?
+                        WHERE id = ?`, [site.endpoint, site.auth_key, site_p256dh, id], function(err, res) {
+                            
+                            (err) ? result(err, null) : result(null, res);
+
+                        }
+        );
+    }
+
+    /**
+     * Delete an site based on its id
+     * 
+     * @param   {int}        id      site id
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result}    Result MySQL Object
+     */
+    static delete(id, result) {
+
+        dbConn.query("DELETE FROM site WHERE id = ?", id, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+
+        })
+
+    }
+
+}
+
+module.exports = Site;
