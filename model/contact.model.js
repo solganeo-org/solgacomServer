@@ -16,7 +16,7 @@ class Contact {
         this.first_name         =   contact.first_name;
         this.last_name          =   contact.last_name;
         this.email              =   contact.email;
-        this.function           =   contact.function;
+        this.fonction           =   contact.fonction;
         this.icon_path          =   contact.icon_path;
         this.id_account         =   contact.id_account;
         this.last_modification  =   contact.last_modification;

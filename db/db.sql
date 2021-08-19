@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS contact (
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    function VARCHAR(50) NOT NULL,
+    fonction VARCHAR(50) NOT NULL,
     icon_path VARCHAR(255) DEFAULT '',
     id_account BIGINT UNSIGNED,
     last_modification VARCHAR(50) NOT NULL,
