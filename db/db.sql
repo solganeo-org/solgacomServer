@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS account (
     id BIGINT UNSIGNED,
     nb_employees int NOT NULL,
     society_name VARCHAR(50) NOT NULL,
-    status VARCHAR(50) NOT NULL,
     siret VARCHAR(20) NOT NULL UNIQUE,
     country VARCHAR(5) NOT NULL,
     phone_number VARCHAR(20) NOT NULL,
@@ -75,6 +74,8 @@ CREATE TABLE IF NOT EXISTS site (
     url VARCHAR(255) NOT NULL UNIQUE,
     domain VARCHAR(255) NOT NULL,
     icon_path VARCHAR(255),
+    private_key VARCHAR(255) NOT NULL,
+    public_key VARCHAR(255) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT '1'
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -105,7 +106,7 @@ CREATE TABLE IF NOT EXISTS profile (
 CREATE TABLE IF NOT EXISTS client (
 
     id BIGINT UNSIGNED,
-    endpoint VARCHAR(100) NOT NULL,
+    endpoint VARCHAR(512) NOT NULL,
     key_auth VARCHAR(100) NOT NULL,
     key_p256dh VARCHAR(100) NOT NULL,
     device VARCHAR(50),
@@ -183,6 +184,10 @@ CREATE TABLE IF NOT EXISTS tracking (
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+-- -----------------------------------------------------
+
+INSERT INTO profile (name, create_site, read_site, modify_site, delete_site, create_contact, modify_contact, delete_contact, active) VALUES ("Admin", '1', '1', '1', '1', '1', '1', '1', '1');
 
 -- -----------------------------------------------------
 
@@ -294,6 +299,12 @@ ALTER TABLE client
 ALTER TABLE tracking
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE site_contact
+  MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
+
+  ALTER TABLE site_client
+  MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
+
 -- -----------------------------------------------------
 
 --
@@ -351,6 +362,3 @@ ALTER TABLE tracking
 
 
 -- -----------------------------------------------------
-
--- INSERT INTO profile (name, create_site, read_site, modify_site, delete_site, create_contact, modify_contact, delete_contact, active) VALUES ("Admin", '1', '1', '1', '1', '1', '1', '1', '1');
-

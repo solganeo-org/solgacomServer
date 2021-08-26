@@ -30,6 +30,8 @@ class User {
      */
     static create(user, result) {
 
+        console.log()
+
         dbConn.query("INSERT INTO user SET ?", user , function(err, res){
 
             (err) ? result(err, null) : result(null, res.insertId);
@@ -83,6 +85,8 @@ class User {
      * @returns {Result}    Array list of user if there is no error
      */
     static findAll(result) {
+
+        console.log("FIndAll")
 
         dbConn.query("SELECT * FROM user", function(err, res){
 

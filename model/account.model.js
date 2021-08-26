@@ -16,7 +16,6 @@ class Account {
         this.id                 = account.id;
         this.nb_employees       = account.nb_employees;
         this.society_name       = account.society_name;
-        this.status             = account.status;
         this.siret              = account.siret;
         this.country            = account.country;
         this.phone_number       = account.phone_number;
@@ -110,8 +109,8 @@ class Account {
     static update(id, account, result) {
 
         dbConn.query(`UPDATE account 
-                        SET nb_employees = ?, society_name = ?, status = ?, siret = ?, country = ?, phone_number = ?, email = ?, icon_path = ?
-                        WHERE id = ?`, [account.nb_employees, account.society_name, account.status, account.siret, account.country, account.phone_number, account.email, account.icon_path, id], 
+                        SET nb_employees = ?, society_name = ?, siret = ?, country = ?, phone_number = ?, email = ?, icon_path = ?
+                        WHERE id = ?`, [account.nb_employees, account.society_name, account.siret, account.country, account.phone_number, account.email, account.icon_path, id], 
                         
                         function(err, res) {
                             
