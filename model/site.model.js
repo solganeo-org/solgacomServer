@@ -19,6 +19,7 @@ class Site {
         this.icon_path          =   site.icon_path;
         this.private_key        =   site.private_key;
         this.public_key         =   site.public_key;
+        this.url_amazon         =   site.url_amazon;
         this.active             =   site.active;
 
     }
@@ -107,8 +108,8 @@ class Site {
     static update(id, site, result) {
 
         dbConn.query(`UPDATE site 
-                        SET endpoint = ?, auth_key = ?, auth_p256dh = ?
-                        WHERE id = ?`, [site.endpoint, site.auth_key, site_p256dh, id], function(err, res) {
+                        SET name = ?, url = ?, domain = ?, icon_path = ?, url_amazon = ?
+                        WHERE id = ?`, [site.name, site.url, site.domain, site.icon_path, site.url_amazon, id], function(err, res) {
                             
                             (err) ? result(err, null) : result(null, res);
 

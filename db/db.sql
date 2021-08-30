@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS site (
     icon_path VARCHAR(255),
     private_key VARCHAR(255) NOT NULL,
     public_key VARCHAR(255) NOT NULL,
+    url_amazon VARCHAR(255) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT '1'
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

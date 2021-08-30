@@ -65,7 +65,7 @@ class SiteContact {
      */
     static findByContactId(id, result) {
 
-        dbConn.query(`SELECT s.id, s.name, s.url, s.domain, s.icon_path, s.private_key, s.public_key 
+        dbConn.query(`SELECT s.id, s.name, s.url, s.domain, s.icon_path, s.private_key, s.public_key, s.url_amazon
                         FROM site AS s 
                         INNER JOIN site_contact AS sc ON sc.id_site = s.id 
                         WHERE sc.id_contact = ? AND sc.active = 1`, id, function(err, res){
