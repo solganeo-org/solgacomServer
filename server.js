@@ -40,8 +40,7 @@ const Profile = require('./routes/profile.routes')
 const Notification = require('./routes/notification.routes')
 const Client = require('./routes/client.routes')
 const SiteClient = require('./routes/site_client.routes')
-
-
+const SendNotification = require('./routes/sendnotification.routes')
 
 // using as middleware
 app.use('/api/accounts', accountRoutes)
@@ -53,6 +52,7 @@ app.use('/api/profiles', Profile)
 app.use('/api/notification', Notification)
 app.use('/api/clients', Client)
 app.use('/api/sites-clients', SiteClient)
+app.use('/api/send-notification', SendNotification)
 
 
 // listen for requests
