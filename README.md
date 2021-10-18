@@ -2,11 +2,17 @@
 
 This is the part in charge of the backend of the Solgacom application. The application is developed using Node js [Node Documentation](https://nodejs.org/es/docs/).
 
-## Install Node
+## Getting Started
 
 ---
 
-If you don't have installed Node js install it at the following link [Install Node js](https://nodejs.org/es/download/) 
+If you don't have installed Node js install it at the following link [Install Node js](https://nodejs.org/es/download/).
+
+Once installed, write the following command at root repertory:
+
+``npm update``
+
+
 
 ## Install MySQL
 
