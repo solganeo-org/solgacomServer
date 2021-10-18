@@ -8,6 +8,12 @@ This is the part in charge of the backend of the Solgacom application. The appli
 
 If you don't have installed Node js install it at the following link [Install Node js](https://nodejs.org/es/download/) 
 
+## Install MySQL
+
+Before testing app it's necessary install MySQL instance in your computer. If you are using Windows, We recomend you install XAMPP, there you can use an phpmyadmin tool to admin the database.
+
+Following the next tutorial to install it [Install XAMPP](https://www.apachefriends.org/es/download.html)  
+
 ## Local Test
 
 ---
@@ -37,3 +43,29 @@ If you don't know how to make this process, please contact r.zuniga@solganeo.com
 ## Directories
 
 ---
+
+### Config
+
+> Files to make the Database Connection
+
+### Controller
+
+> Files where functions execute model methods in order to make calls to our DB (One controller by model class)
+
+### db
+
+> sql file (imported on Solgacom Server)
+
+### model
+
+> Classes that describes methodes and attributs of every Database table used in the project (Their methods are called by controller fike)
+
+
+### node_modules
+
+> Node Libraries installed via node commands
+
+
+### routes
+
+> We define the API routes that external applications will call once server is running
