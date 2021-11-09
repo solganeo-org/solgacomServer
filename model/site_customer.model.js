@@ -139,4 +139,4 @@ class Site_customer{
 
 }
 
-module.exports = Site_client;
+module.exports = Site_customer;

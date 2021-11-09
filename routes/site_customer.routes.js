@@ -1,23 +1,23 @@
 const express = require('express')
 const router = express.Router()
-const SiteClientController =   require('../controller/site_client.controller')
+const SiteCustomerController = require('../controller/site_customer.controller')
 
-console.log(SiteClientController)
+console.log(SiteCustomerController)
 
 // Retrieve all users
-router.get('/', SiteClientController.findAll);
+router.get('/', SiteCustomerController.findAll);
 
 // Create a new user
-router.post('/', SiteClientController.create);
+router.post('/', SiteCustomerController.create);
 
 // Retrieve a single user with email
-router.get('/client-id/:id', SiteClientController.findByIdSite)
-router.get('/id/:id', SiteClientController.findById);
+router.get('/customer-id/:id', SiteCustomerController.findByIdSite)
+router.get('/id/:id', SiteCustomerController.findById);
 
 // Update a User with email
-router.put('/:id', SiteClientController.update);
+router.put('/:id', SiteCustomerController.update);
 
 // Delete a employee with email
-router.delete('/:id', SiteClientController.delete);
+router.delete('/:id', SiteCustomerController.delete);
 
 module.exports = router

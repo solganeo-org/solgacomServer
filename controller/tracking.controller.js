@@ -161,4 +161,4 @@ class TrackingController{
 
 }
 
-module.exports = SiteruleController;
+module.exports = TrackingController;

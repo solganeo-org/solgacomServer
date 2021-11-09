@@ -140,4 +140,4 @@ class Tracking{
 
 }
 
-module.exports = tracking;
+module.exports = Tracking;

@@ -161,4 +161,4 @@ class CustomerController{
 
 }
 
-module.exports = customerController;
+module.exports = CustomerController;

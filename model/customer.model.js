@@ -138,4 +138,4 @@ class Customer {
 
 }
 
-module.exports = customer;
+module.exports = Customer;

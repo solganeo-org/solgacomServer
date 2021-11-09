@@ -161,4 +161,4 @@ class SiteCustomerController{
 
 }
 
-module.exports = SiteClientController;
+module.exports = SiteCustomerController;
