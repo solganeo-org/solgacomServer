@@ -44,22 +44,10 @@ CREATE TABLE IF NOT EXISTS contact (
     fonction VARCHAR(50) NOT NULL,
     icon_path VARCHAR(255) DEFAULT '',
     id_account BIGINT UNSIGNED,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     last_modification VARCHAR(50) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT '1'
-
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Table Structure for 'user'
---
-
-CREATE TABLE IF NOT EXISTS user (
-
-    id BIGINT UNSIGNED,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    id_profile BIGINT UNSIGNED,
-    active BOOLEAN DEFAULT '1'
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -77,7 +65,26 @@ CREATE TABLE IF NOT EXISTS site (
     private_key VARCHAR(255) NOT NULL,
     public_key VARCHAR(255) NOT NULL,
     url_amazon VARCHAR(255) NOT NULL,
+    id_site_rule BIGINT UNSIGNED,
     active BOOLEAN NOT NULL DEFAULT '1'
+
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Table Structure for 'site_rule'
+--
+
+CREATE TABLE IF NOT EXISTS site_rule (
+
+    id BIGINT UNSIGNED,
+    name VARCHAR(255) NOT NULL,
+    modify_site BOOLEAN NOT NULL DEFAULT '0',
+    create_site BOOLEAN NOT NULL DEFAULT '0',
+    delete_site BOOLEAN NOT NULL DEFAULT '0',
+    id_contact BIGINT UNSIGNED,
+    id_site BIGINT UNSIGNED,
+    read_dashboard BOOLEAN NOT NULL DEFAULT '0'
+    
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -89,10 +96,7 @@ CREATE TABLE IF NOT EXISTS profile (
 
     id BIGINT UNSIGNED,
     name VARCHAR(255) NOT NULL,
-    create_site BOOLEAN NOT NULL DEFAULT '0',
     read_site BOOLEAN NOT NULL DEFAULT '0',
-    modify_site BOOLEAN NOT NULL DEFAULT '0',
-    delete_site BOOLEAN NOT NULL DEFAULT '0',
     create_contact BOOLEAN NOT NULL DEFAULT '0',
     modify_contact BOOLEAN NOT NULL DEFAULT '0',
     delete_contact BOOLEAN NOT NULL DEFAULT '0',
@@ -101,10 +105,10 @@ CREATE TABLE IF NOT EXISTS profile (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Table Structure for 'client'
+-- Table Structure for 'customer'
 --
 
-CREATE TABLE IF NOT EXISTS client (
+CREATE TABLE IF NOT EXISTS customer (
 
     id BIGINT UNSIGNED,
     endpoint VARCHAR(512) NOT NULL,
@@ -117,13 +121,15 @@ CREATE TABLE IF NOT EXISTS client (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Table Structure for 'segment_sql'
+-- Table Structure for 'automation'
 --
 
-CREATE TABLE IF NOT EXISTS segment_sql (
+CREATE TABLE IF NOT EXISTS automation (
 
     id BIGINT UNSIGNED,
     sql_string TEXT NOT NULL,
+    filtrer VARCHAR(255) NOT NULL,
+    frequency VARCHAR(255) NOT NULL,
     id_contact BIGINT UNSIGNED,
     active BOOLEAN NOT NULL DEFAULT '1'
 
@@ -136,7 +142,7 @@ CREATE TABLE IF NOT EXISTS segment_sql (
 CREATE TABLE IF NOT EXISTS notification (
 
     id BIGINT UNSIGNED,
-    id_segment_sql BIGINT UNSIGNED,
+    id_automation BIGINT UNSIGNED,
     title VARCHAR(200) NOT NULL,
     content VARCHAR(500) NOT NULL,
     status VARCHAR(50) NOT NULL,
@@ -145,28 +151,14 @@ CREATE TABLE IF NOT EXISTS notification (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Table Structure for 'site_contact'
+-- Table Structure for 'site_customer'
 --
 
-CREATE TABLE IF NOT EXISTS site_contact (
+CREATE TABLE IF NOT EXISTS site_customer (
 
     id BIGINT UNSIGNED,
     id_site BIGINT UNSIGNED,
-    id_contact BIGINT UNSIGNED,
-    active BOOLEAN NOT NULL DEFAULT '1'
-
-
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Table Structure for 'site_client'
---
-
-CREATE TABLE IF NOT EXISTS site_client (
-
-    id BIGINT UNSIGNED,
-    id_site BIGINT UNSIGNED,
-    id_client BIGINT UNSIGNED,
+    id_customer BIGINT UNSIGNED,
     active BOOLEAN NOT NULL DEFAULT '1'
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -179,7 +171,7 @@ CREATE TABLE IF NOT EXISTS tracking (
 
     id BIGINT UNSIGNED,
     id_notification BIGINT UNSIGNED,
-    id_client BIGINT UNSIGNED,
+    id_customer BIGINT UNSIGNED,
     status VARCHAR(50) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT '1'
 
@@ -188,7 +180,7 @@ CREATE TABLE IF NOT EXISTS tracking (
 
 -- -----------------------------------------------------
 
-INSERT INTO profile (name, create_site, read_site, modify_site, delete_site, create_contact, modify_contact, delete_contact, active) VALUES ("Admin", '1', '1', '1', '1', '1', '1', '1', '1');
+INSERT INTO profile (name, read_site, create_contact, modify_contact, delete_contact, active) VALUES ("Admin", '1', '1', '1', '1', '1');
 
 -- -----------------------------------------------------
 
@@ -207,12 +199,6 @@ ALTER TABLE contact
     ADD PRIMARY KEY (id),
     ADD UNIQUE KEY (email);
 
---
--- Indexes for table `user`
---
-
-ALTER TABLE user
-    ADD PRIMARY KEY (id);
 
 --
 -- Indexes for table `site`
@@ -222,6 +208,12 @@ ALTER TABLE site
     ADD PRIMARY KEY (id);
 
 --
+-- Indexes for table `site_rule`
+--
+
+ALTER TABLE site_rule
+    ADD PRIMARY KEY (id);
+--
 -- Indexes for table `profile`
 --
 
@@ -229,17 +221,17 @@ ALTER TABLE profile
     ADD PRIMARY KEY (id);
 
 --
--- Indexes for table `client`
+-- Indexes for table `customer`
 --
 
-ALTER TABLE client
+ALTER TABLE customer
     ADD PRIMARY KEY (id);
 
 --
--- Indexes for table `segment_sql`
+-- Indexes for table `automation`
 --
 
-ALTER TABLE segment_sql
+ALTER TABLE automation
     ADD PRIMARY KEY (id);
 
 --
@@ -257,17 +249,10 @@ ALTER TABLE tracking
     ADD PRIMARY KEY (id);
 
 --
--- Indexes for table `site_contact`
+-- Indexes for table `site_customer`
 --
 
-ALTER TABLE site_contact
-    ADD PRIMARY KEY (id);
-
---
--- Indexes for table `site_client`
---
-
-ALTER TABLE site_client
+ALTER TABLE site_customer
     ADD PRIMARY KEY (id);
 
 
@@ -279,31 +264,28 @@ ALTER TABLE account
 ALTER TABLE contact
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE user
-  MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
-
 ALTER TABLE profile
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE site
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE segment_sql
+ALTER TABLE site_rule
+  MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE automation
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE notification
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE client
+ALTER TABLE customer
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE tracking
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE site_contact
-  MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
-
-  ALTER TABLE site_client
+ALTER TABLE site_customer
   MODIFY id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
 -- -----------------------------------------------------
@@ -316,42 +298,34 @@ ALTER TABLE contact
   ADD CONSTRAINT contact_fk_1 FOREIGN KEY (id_account) REFERENCES account (id);
 
 --
--- Constraints for table `user`
+-- Constraints for table `site_rule`
 --
 
-ALTER TABLE user
-  ADD CONSTRAINT user_fk_1 FOREIGN KEY (id_profile) REFERENCES profile (id),
-  ADD CONSTRAINT user_fk_2 FOREIGN KEY (username) REFERENCES contact (email);
+ALTER TABLE site_rule
+   ADD CONSTRAINT site_rule_fk_1 FOREIGN KEY (id_site) REFERENCES site (id),
+   ADD CONSTRAINT site_rule_fk_2 FOREIGN KEY (id_contact) REFERENCES contact (id);
 
 --
--- Constraints for table `site_contact`
+-- Constraints for table `automation`
 --
 
-ALTER TABLE site_contact
-  ADD CONSTRAINT site_contact_fk_1 FOREIGN KEY (id_site) REFERENCES site (id),
-  ADD CONSTRAINT site_contact_fk_2 FOREIGN KEY (id_contact) REFERENCES contact (id);
+ALTER TABLE automation
+    ADD CONSTRAINT automation_fk_1 FOREIGN KEY (id_contact) REFERENCES contact (id);
 
 --
--- Constraints for table `segment_sql`
+-- Constraints for table `site_customer`
 --
 
-ALTER TABLE segment_sql
-    ADD CONSTRAINT segment_sql_fk_1 FOREIGN KEY (id_contact) REFERENCES contact (id);
-
---
--- Constraints for table `site_client`
---
-
-ALTER TABLE site_client
-    ADD CONSTRAINT site_client_fk_1 FOREIGN KEY (id_site) REFERENCES site (id),
-    ADD CONSTRAINT site_client_fk_2 FOREIGN KEY (id_client) REFERENCES client (id);
+ALTER TABLE site_customer
+    ADD CONSTRAINT site_customer_fk_1 FOREIGN KEY (id_site) REFERENCES site (id),
+    ADD CONSTRAINT site_customer_fk_2 FOREIGN KEY (id_customer) REFERENCES customer (id);
 
 --
 -- Constraints for table `notification`
 --
 
 ALTER TABLE notification
-    ADD CONSTRAINT notification_fk_1 FOREIGN KEY (id_segment_sql) REFERENCES segment_sql (id);
+    ADD CONSTRAINT notification_fk_1 FOREIGN KEY (id_automation) REFERENCES automation (id);
 
 --
 -- Constraints for table `tracking`
@@ -359,7 +333,7 @@ ALTER TABLE notification
 
 ALTER TABLE tracking
     ADD CONSTRAINT tracking_fk_1 FOREIGN KEY (id_notification) REFERENCES notification (id),
-    ADD CONSTRAINT tracking_fk_2 FOREIGN KEY (id_client) REFERENCES client (id);
+    ADD CONSTRAINT tracking_fk_2 FOREIGN KEY (id_customer) REFERENCES customer (id);
 
 
 -- -----------------------------------------------------

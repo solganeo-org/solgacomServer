@@ -2,34 +2,34 @@
 
 var dbConn = require('../config/db.config');
 
-class Site_client {
+class Site_rule {
 
     /**
-     * Creates a site_client from an site_client JSON object.
+     * Creates a site_rule from an site_rule JSON object.
      * 
-     * @param  {site_client} site_client JSON site_client
+     * @param  {site_rule} site_rule JSON site_rule
      * 
      */
-    constructor(site_client) {
+    constructor(site_rule) {
 
-        this.id                 =   site_client.id;
-        this.id_site            =   site_client.id_site;
-        this.id_client          =   site_client.id_client;
-        this.active             =   site_client.active;
+        this.id                 =   site_rule.id;
+        this.id_site            =   site_rule.id_site;
+        this.id_rule          =   site_rule.id_rule;
+        this.active             =   site_rule.active;
 
     }
 
     /**
      * Generates a INSERT query and executes it within the Database
      * 
-     * @param   {site_client}   site_client     JSON site_client
+     * @param   {site_rule}   site_rule     JSON site_rule
      * @param   {Result}    result      Result MySQL object
      * 
      * @returns {Result}    result MySQL object
      */
-    static create(site_client, result) {
+    static create(site_rule, result) {
 
-        dbConn.query("INSERT INTO site_client SET ?", site_client , function(err, res){
+        dbConn.query("INSERT INTO site_rule SET ?", site_rule , function(err, res){
 
             (err) ? result(err, null) : result(null, res.insertId);
 
@@ -38,16 +38,16 @@ class Site_client {
     }
 
     /**
-     * Search an site_client based on its id field
+     * Search an site_rule based on its id field
      * 
-     * @param   {int}    id     site_client id
+     * @param   {int}    id     site_rule id
      * @param   {Result} result Result MySQL object
      * 
-     * @returns {Result} site_client 
+     * @returns {Result} site_rule 
      */
     static findById(id, result) {
 
-        dbConn.query("SELECT * FROM site_client WHERE id = ?", id, function(err, res){
+        dbConn.query("SELECT * FROM site_rule WHERE id = ?", id, function(err, res){
 
             (err) ? result(err, null) : result(null, res);
             
@@ -56,18 +56,18 @@ class Site_client {
     }
 
     /**
-     * Search an site_client based on its email field
+     * Search an site_rule based on its email field
      * 
-     * @param   {string}     email   email site_client
+     * @param   {string}     email   email site_rule
      * @param   {Result}    result  Result MySQL object
      * 
-     * @returns {Result}    site_client JSON if there is no error
+     * @returns {Result}    site_rule JSON if there is no error
      */
     static findByIdSite(id, result) {
 
         dbConn.query(`SELECT c.id, c.endpoint, c.key_auth, c.key_p256dh, c.device 
-                        FROM client AS c 
-                        INNER JOIN site_client AS sc ON c.id = sc.id_client 
+                        FROM rule AS c 
+                        INNER JOIN site_rule AS sc ON c.id = sc.id_rule 
                         WHERE sc.id_site = ?`, id, function(err, res){
 
             (err) ? result(err, null) : result(null, res);
@@ -77,16 +77,16 @@ class Site_client {
     }
 
     /**
-     * Search all the site_client
+     * Search all the site_rule
      * 
-     * @param   {int}        id      site_client id
+     * @param   {int}        id      site_rule id
      * @param   {Result}    result  Result MySQL object
      * 
-     * @returns {Result}    Array list of site_client if there is no error
+     * @returns {Result}    Array list of site_rule if there is no error
      */
     static findAll(result) {
 
-        dbConn.query("SELECT * FROM site_client", function(err, res){
+        dbConn.query("SELECT * FROM site_rule", function(err, res){
 
             (err) ? result(err, null) : result(null, res);
             
@@ -96,18 +96,18 @@ class Site_client {
 
 
     /**
-     * Update an site_client based on its id
+     * Update an site_rule based on its id
      * 
-     * @param   {int}        id      site_client id
+     * @param   {int}        id      site_rule id
      * @param   {Result}    result  Result MySQL object
      * 
      * @returns {Result} Result MySQL Object
      */
-    static update(id, site_client, result) {
+    static update(id, site_rule, result) {
 
-        dbConn.query(`UPDATE site_client 
+        dbConn.query(`UPDATE site_rule 
                         SET first_name = ?, last_name = ?, email = ?, function = ?, icon_path = ?, id_account = ?, created_by = ?, modified_by = ?, last_modification = ?
-                        WHERE id = ?`, [site_client.first_name, site_client.last_name, site_client.email, site_client.function, site_client.icon_path, site_client.id_account, site_client.created_by, site_client.modified_by, site_client.last_modification, id], function(err, res) {
+                        WHERE id = ?`, [site_rule.first_name, site_rule.last_name, site_rule.email, site_rule.function, site_rule.icon_path, site_rule.id_account, site_rule.created_by, site_rule.modified_by, site_rule.last_modification, id], function(err, res) {
                             
                             (err) ? result(err, null) : result(null, res);
 
@@ -118,7 +118,7 @@ class Site_client {
     }
 
     /**
-     * Delete an site_client based on its id
+     * Delete an site_rule based on its id
      * 
      * @param   {int}        id      site_client id
      * @param   {Result}    result  Result MySQL object

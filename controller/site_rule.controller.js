@@ -1,38 +1,38 @@
 'use strict'
 
-const client = require('../model/client.model');
+const site_rule = require('../model/site_rule.model');
 
-class ClientController{
+class SiteRuleController{
 
     /**
      */
     constructor(){}
 
     /**
-     * Calls client.findAll() static method and send a HTTP response
+     * Calls site_rule.findAll() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findAll(req, res) {
 
-        client.findAll(function(err, client){
+        site_rule.findAll(function(err, site_rule){
 
-            (err) ? res.send(err) : res.send(client);
+            (err) ? res.send(err) : res.send(site_rule);
 
         });
 
     }
 
     /**
-     * Calls client.create() static method and send a HTTP response
+     * Calls site_rule.create() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static create(req, res) {
 
-        const newclient = new client(req.body);
+        const newsite_rule = new site_rule(req.body);
 
         // handle null errors
 
@@ -44,15 +44,15 @@ class ClientController{
 
         else {
 
-            client.create(newclient, function(err, client){
+            site_rule.create(newsite_rule, function(err, site_rule){
 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: "client Added Successfully!",
-                    data: client
+                    message: "site_rule Added Successfully!",
+                    data: site_rule
 
                 })
 
@@ -63,43 +63,43 @@ class ClientController{
     }
 
     /**
-     * Calls client.findById() static method and send a HTTP response
+     * Calls site_rule.findById() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findById(req, res){
 
-        client.findById(req.params.id, function(err, client){
+        site_rule.findById(req.params.id, function(err, site_rule){
             
             if (err) res.send(err);
 
-            res.json(client);
+            res.json(site_rule);
             
         });
 
     }
 
     /**
-     * Calls client.findByEmail() static method and send a HTTP response
+     * Calls site_rule.findByEmail() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
-    static findByEmail (req, res) {
+    static findByruleId (req, res) {
 
-        client.findByEmail(req.params.email, function(err, client){
+        site_rule.findByruleId(req.params.id, function(err, site_rule){
             
             if (err) res.send(err);
 
-            res.json(client);
+            res.json(site_rule);
             
         });
 
     }
 
     /**
-     * Calls client.update() static method and send a HTTP response
+     * Calls site_rule.update() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
@@ -119,14 +119,14 @@ class ClientController{
 
         else {
 
-            client.update(req.params.id, new client(req.body), function(err, client){
+            site_rule.update(req.params.id, new site_rule(req.body), function(err, site_rule){
                 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: 'client Successfully Updated'
+                    message: 'site_rule Successfully Updated'
                     
                 })
                 
@@ -138,21 +138,21 @@ class ClientController{
     }
 
     /**
-     * Calls client.delete() static method and send a HTTP response
+     * Calls site_rule.delete() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static delete(req, res) {
 
-        client.delete(req.params.id, function(err, client) {
+        site_rule.delete(req.params.id, function(err, site_rule) {
             
             if(err) res.send(err);
 
             res.json({
 
                 error: false,
-                message: 'client Successfully Deleted'
+                message: 'site_rule Successfully Deleted'
 
             })
         })
@@ -161,4 +161,4 @@ class ClientController{
 
 }
 
-module.exports = ClientController;
+module.exports = SiteruleController;

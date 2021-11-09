@@ -1,38 +1,38 @@
 'use strict'
 
-const site_contact = require('../model/site_contact.model');
+const site_customer = require('../model/site_customer.model');
 
-class SiteContactController{
+class SiteCustomerController{
 
     /**
      */
     constructor(){}
 
     /**
-     * Calls site_contact.findAll() static method and send a HTTP response
+     * Calls site_customer.findAll() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findAll(req, res) {
 
-        site_contact.findAll(function(err, site_contact){
+        site_customer.findAll(function(err, site_customer){
 
-            (err) ? res.send(err) : res.send(site_contact);
+            (err) ? res.send(err) : res.send(site_customer);
 
         });
 
     }
 
     /**
-     * Calls site_contact.create() static method and send a HTTP response
+     * Calls site_customer.create() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static create(req, res) {
 
-        const newsite_contact = new site_contact(req.body);
+        const newsite_customer = new site_customer(req.body);
 
         // handle null errors
 
@@ -44,15 +44,15 @@ class SiteContactController{
 
         else {
 
-            site_contact.create(newsite_contact, function(err, site_contact){
+            site_customer.create(newsite_customer, function(err, site_customer){
 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: "site_contact Added Successfully!",
-                    data: site_contact
+                    message: "site_customer Added Successfully!",
+                    data: site_customer
 
                 })
 
@@ -63,43 +63,43 @@ class SiteContactController{
     }
 
     /**
-     * Calls site_contact.findById() static method and send a HTTP response
+     * Calls site_customer.findById() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findById(req, res){
 
-        site_contact.findById(req.params.id, function(err, site_contact){
+        site_customer.findById(req.params.id, function(err, site_customer){
             
             if (err) res.send(err);
 
-            res.json(site_contact);
+            res.json(site_customer);
             
         });
 
     }
 
     /**
-     * Calls site_contact.findByEmail() static method and send a HTTP response
+     * Calls site_customer.findByEmail() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
-    static findByContactId (req, res) {
+    static findByIdSite (req, res) {
 
-        site_contact.findByContactId(req.params.id, function(err, site_contact){
+        site_customer.findByIdSite(req.params.id, function(err, site_customer){
             
             if (err) res.send(err);
 
-            res.json(site_contact);
+            res.json(site_customer);
             
         });
 
     }
 
     /**
-     * Calls site_contact.update() static method and send a HTTP response
+     * Calls site_customer.update() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
@@ -119,14 +119,14 @@ class SiteContactController{
 
         else {
 
-            site_contact.update(req.params.id, new site_contact(req.body), function(err, site_contact){
+            site_customer.update(req.params.id, new site_customer(req.body), function(err, site_customer){
                 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: 'site_contact Successfully Updated'
+                    message: 'site_customer Successfully Updated'
                     
                 })
                 
@@ -138,21 +138,21 @@ class SiteContactController{
     }
 
     /**
-     * Calls site_contact.delete() static method and send a HTTP response
+     * Calls site_customer.delete() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static delete(req, res) {
 
-        site_contact.delete(req.params.id, function(err, site_contact) {
+        site_customer.delete(req.params.id, function(err, site_customer) {
             
             if(err) res.send(err);
 
             res.json({
 
                 error: false,
-                message: 'site_contact Successfully Deleted'
+                message: 'site_customer Successfully Deleted'
 
             })
         })
@@ -161,4 +161,4 @@ class SiteContactController{
 
 }
 
-module.exports = SiteContactController;
+module.exports = SiteClientController;

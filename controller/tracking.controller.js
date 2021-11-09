@@ -1,38 +1,38 @@
 'use strict'
 
-const user = require('../model/user.model');
+const tracking = require('../model/tracking.model');
 
-class userController{
+class TrackingController{
 
     /**
      */
     constructor(){}
 
     /**
-     * Calls user.findAll() static method and send a HTTP response
+     * Calls tracking.findAll() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findAll(req, res) {
 
-        user.findAll(function(err, user){
+        tracking.findAll(function(err, tracking){
 
-            (err) ? res.send(err) : res.send(user);
+            (err) ? res.send(err) : res.send(tracking);
 
         });
 
     }
 
     /**
-     * Calls user.create() static method and send a HTTP response
+     * Calls tracking.create() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static create(req, res) {
 
-        const newuser = new user(req.body);
+        const newtracking = new tracking(req.body);
 
         // handle null errors
 
@@ -44,15 +44,15 @@ class userController{
 
         else {
 
-            user.create(newuser, function(err, user){
+            tracking.create(newtracking, function(err, tracking){
 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: "user Added Successfully!",
-                    data: user
+                    message: "tracking Added Successfully!",
+                    data: tracking
 
                 })
 
@@ -63,43 +63,43 @@ class userController{
     }
 
     /**
-     * Calls user.findById() static method and send a HTTP response
+     * Calls tracking.findById() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findById(req, res){
 
-        user.findById(req.params.id, function(err, user){
+        tracking.findById(req.params.id, function(err, tracking){
             
             if (err) res.send(err);
 
-            res.json(user);
+            res.json(tracking);
             
         });
 
     }
 
     /**
-     * Calls user.findByEmail() static method and send a HTTP response
+     * Calls tracking.findByEmail() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
-    static findByEmail (req, res) {
+    static findByruleId (req, res) {
 
-        user.findByEmail(req.params.email, function(err, user){
+        tracking.findByruleId(req.params.id, function(err, tracking){
             
             if (err) res.send(err);
 
-            res.json(user);
+            res.json(tracking);
             
         });
 
     }
 
     /**
-     * Calls user.update() static method and send a HTTP response
+     * Calls tracking.update() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
@@ -119,14 +119,14 @@ class userController{
 
         else {
 
-            user.update(req.params.id, new user(req.body), function(err, user){
+            tracking.update(req.params.id, new tracking(req.body), function(err, tracking){
                 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: 'user Successfully Updated'
+                    message: 'tracking Successfully Updated'
                     
                 })
                 
@@ -138,21 +138,21 @@ class userController{
     }
 
     /**
-     * Calls user.delete() static method and send a HTTP response
+     * Calls tracking.delete() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static delete(req, res) {
 
-        user.delete(req.params.id, function(err, user) {
+        tracking.delete(req.params.id, function(err, tracking) {
             
             if(err) res.send(err);
 
             res.json({
 
                 error: false,
-                message: 'user Successfully Deleted'
+                message: 'tracking Successfully Deleted'
 
             })
         })
@@ -161,4 +161,4 @@ class userController{
 
 }
 
-module.exports = userController;
+module.exports = SiteruleController;

@@ -13,9 +13,8 @@ class Profile {
     constructor(profile) {
 
         this.id                     =   profile.id;
+        this.name                   =   profile.name;
         this.read_site              =   profile.read_site;
-        this.modify_site            =   profile.modify_site;
-        this.delete_site            =   profile.delete_site;
         this.create_contact         =   profile.create_contact;
         this.modify_contact         =   profile.modify_contact;
         this.delete_contact         =   profile.delete_contact;
@@ -60,24 +59,6 @@ class Profile {
     }
 
     /**
-     * Search an profile based on its email field
-     * 
-     * @param   {string}     email   email profile
-     * @param   {Result}    result  Result MySQL object
-     * 
-     * @returns {Result}    profile JSON if there is no error
-     */
-    static findByEmail(email, result) {
-
-        dbConn.query("SELECT * FROM profile WHERE email = ?", email, function(err, res){
-
-            (err) ? result(err, null) : result(null, res);
-            
-        });
-
-    }
-
-    /**
      * Search all the profile
      * 
      * @param   {int}        id      profile id
@@ -107,8 +88,8 @@ class Profile {
     static update(id, profile, result) {
 
         dbConn.query(`UPDATE profile 
-                        SET first_name = ?, last_name = ?, email = ?, function = ?, icon_path = ?, id_account = ?, created_by = ?, modified_by = ?, last_modification = ?
-                        WHERE id = ?`, [profile.first_name, profile.last_name, profile.email, profile.function, profile.icon_path, profile.id_account, profile.created_by, profile.modified_by, profile.last_modification, id], function(err, res) {
+                        SET first_name = ?, last_name = ?, email = ?, function = ?, icon_path = ?, id_account = ?, last_modification = ?
+                        WHERE id = ?`, [profile.first_name, profile.last_name, profile.email, profile.function, profile.icon_path, profile.id_account, profile.last_modification, id], function(err, res) {
                             
                             (err) ? result(err, null) : result(null, res);
 

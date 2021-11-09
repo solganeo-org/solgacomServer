@@ -1,38 +1,38 @@
 'use strict'
 
-const site_client = require('../model/site_client.model');
+const customer = require('../model/customer.model');
 
-class SiteClientController{
+class CustomerController{
 
     /**
      */
     constructor(){}
 
     /**
-     * Calls site_client.findAll() static method and send a HTTP response
+     * Calls customer.findAll() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findAll(req, res) {
 
-        site_client.findAll(function(err, site_client){
+        customer.findAll(function(err, customer){
 
-            (err) ? res.send(err) : res.send(site_client);
+            (err) ? res.send(err) : res.send(customer);
 
         });
 
     }
 
     /**
-     * Calls site_client.create() static method and send a HTTP response
+     * Calls customer.create() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static create(req, res) {
 
-        const newsite_client = new site_client(req.body);
+        const newcustomer = new customer(req.body);
 
         // handle null errors
 
@@ -44,15 +44,15 @@ class SiteClientController{
 
         else {
 
-            site_client.create(newsite_client, function(err, site_client){
+            customer.create(newcustomer, function(err, customer){
 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: "site_client Added Successfully!",
-                    data: site_client
+                    message: "customer Added Successfully!",
+                    data: customer
 
                 })
 
@@ -63,43 +63,43 @@ class SiteClientController{
     }
 
     /**
-     * Calls site_client.findById() static method and send a HTTP response
+     * Calls customer.findById() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findById(req, res){
 
-        site_client.findById(req.params.id, function(err, site_client){
+        customer.findById(req.params.id, function(err, customer){
             
             if (err) res.send(err);
 
-            res.json(site_client);
+            res.json(customer);
             
         });
 
     }
 
     /**
-     * Calls site_client.findByEmail() static method and send a HTTP response
+     * Calls customer.findByEmail() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
-    static findByIdSite (req, res) {
+    static findByEmail (req, res) {
 
-        site_client.findByIdSite(req.params.id, function(err, site_client){
+        customer.findByEmail(req.params.email, function(err, customer){
             
             if (err) res.send(err);
 
-            res.json(site_client);
+            res.json(customer);
             
         });
 
     }
 
     /**
-     * Calls site_client.update() static method and send a HTTP response
+     * Calls customer.update() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
@@ -119,14 +119,14 @@ class SiteClientController{
 
         else {
 
-            site_client.update(req.params.id, new site_client(req.body), function(err, site_client){
+            customer.update(req.params.id, new customer(req.body), function(err, customer){
                 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: 'site_client Successfully Updated'
+                    message: 'customer Successfully Updated'
                     
                 })
                 
@@ -138,21 +138,21 @@ class SiteClientController{
     }
 
     /**
-     * Calls site_client.delete() static method and send a HTTP response
+     * Calls customer.delete() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static delete(req, res) {
 
-        site_client.delete(req.params.id, function(err, site_client) {
+        customer.delete(req.params.id, function(err, customer) {
             
             if(err) res.send(err);
 
             res.json({
 
                 error: false,
-                message: 'site_client Successfully Deleted'
+                message: 'customer Successfully Deleted'
 
             })
         })
@@ -161,4 +161,4 @@ class SiteClientController{
 
 }
 
-module.exports = SiteClientController;
+module.exports = customerController;
