@@ -81,6 +81,24 @@ class SiteRuleController{
     }
 
     /**
+     * Calls site_rule.findById() static method and send a HTTP response
+     * 
+     * @param  {} req
+     * @param  {} res
+     */
+     static findByContactId(req, res){
+
+        site_rule.findByConbtactId(req.params.id, function(err, site_rule){
+            
+            if (err) res.send(err);
+
+            res.json(site_rule);
+            
+        });
+
+    }
+
+    /**
      * Calls site_rule.findByEmail() static method and send a HTTP response
      * 
      * @param  {} req

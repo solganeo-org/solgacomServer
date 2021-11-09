@@ -55,6 +55,7 @@ class Site_rule {
 
     }
 
+
     /**
      * Search an site_rule based on its email field
      * 
