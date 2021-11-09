@@ -11,7 +11,6 @@ router.get('/', SiteRuleController.findAll);
 router.post('/', SiteRuleController.create);
 
 // Retrieve a single user with email
-router.get('/rule-id/:id', SiteRuleController.findByIdSite)
 router.get('/id/:id', SiteRuleController.findById);
 router.get('/contact-id/:id_contact', SiteRuleController.findByContactId);
 
