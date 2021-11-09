@@ -86,9 +86,9 @@ class SiteRuleController{
      * @param  {} req
      * @param  {} res
      */
-    static findByruleId (req, res) {
+    static findByContactId(req, res) {
 
-        site_rule.findByruleId(req.params.id, function(err, site_rule){
+        site_rule.findByContactId(req.params.contactId, function(err, site_rule){
             
             if (err) res.send(err);
 
@@ -161,4 +161,4 @@ class SiteRuleController{
 
 }
 
-module.exports = SiteruleController;
+module.exports = SiteRuleController;

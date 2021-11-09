@@ -63,12 +63,12 @@ class Site_rule {
      * 
      * @returns {Result}    site_rule JSON if there is no error
      */
-    static findByIdSite(id, result) {
+    static findByContactId(contactId, result) {
 
-        dbConn.query(`SELECT c.id, c.endpoint, c.key_auth, c.key_p256dh, c.device 
-                        FROM rule AS c 
-                        INNER JOIN site_rule AS sc ON c.id = sc.id_rule 
-                        WHERE sc.id_site = ?`, id, function(err, res){
+        dbConn.query(`SELECT *
+                        FROM site AS s
+                        INNER JOIN site_rule AS sr ON s.id = sr.id_site
+                        WHERE sr.id_contact`, contactId, function(err, res){
 
             (err) ? result(err, null) : result(null, res);
             
@@ -139,4 +139,4 @@ class Site_rule {
 
 }
 
-module.exports = Site_client;
+module.exports = Site_rule;
