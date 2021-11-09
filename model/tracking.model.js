@@ -121,14 +121,14 @@ class Tracking{
     /**
      * Delete an tracking based on its id
      * 
-     * @param   {int}        id      site_client id
+     * @param   {int}        id      tracking id
      * @param   {Result}    result  Result MySQL object
      * 
      * @returns {Result}    Result MySQL Object
      */
     static delete(id, result) {
 
-        dbConn.query(`UPDATE site_client 
+        dbConn.query(`UPDATE tracking 
                         SET active = 0
                         WHERE id = ?`, id, function(err, res){
 
@@ -140,4 +140,4 @@ class Tracking{
 
 }
 
-module.exports = Site_client;
+module.exports = tracking;
