@@ -55,23 +55,6 @@ class Site_rule {
 
     }
 
-    /**
-     * Search an site_rule based on its contactid field
-     * 
-     * @param   {int}    contactid     site_rule id
-     * @param   {Result} result Result MySQL object
-     * 
-     * @returns {Result} site_rule 
-     */
-     static findByConbtactId(contactid, result) {
-
-        dbConn.query("SELECT * FROM site_rule WHERE id_contact = ?", contactid, function(err, res){
-
-            (err) ? result(err, null) : result(null, res);
-            
-        });
-
-    }
 
     /**
      * Search an site_rule based on its email field
