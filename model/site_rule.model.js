@@ -13,8 +13,12 @@ class Site_rule {
     constructor(site_rule) {
 
         this.id                 =   site_rule.id;
+        this.name               =   site_rule.name;
+        this.modify_site        =   site_rule.modify_site;
+        this.create_site        =   site_rule.create_site;
+        this.delete_site        =   site_rule.delete_site;
         this.id_site            =   site_rule.id_site;
-        this.id_rule          =   site_rule.id_rule;
+        this.id_contact         =   site_rule.id_contact;
         this.active             =   site_rule.active;
 
     }
@@ -28,9 +32,9 @@ class Site_rule {
      * @returns {Result}    result MySQL object
      */
     static create(site_rule, result) {
-
+        console.log(site_rule)
         dbConn.query("INSERT INTO site_rule SET ?", site_rule , function(err, res){
-
+            
             (err) ? result(err, null) : result(null, res.insertId);
 
         });
