@@ -82,8 +82,8 @@ CREATE TABLE IF NOT EXISTS site_rule (
     delete_site BOOLEAN NOT NULL DEFAULT '0',
     id_contact BIGINT UNSIGNED,
     id_site BIGINT UNSIGNED,
-    read_dashboard BOOLEAN NOT NULL DEFAULT '0'
-    
+    read_dashboard BOOLEAN NOT NULL DEFAULT '0',
+    active BOOLEAN NOT NULL DEFAULT '1'
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
