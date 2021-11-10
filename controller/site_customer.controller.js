@@ -88,7 +88,7 @@ class SiteCustomerController{
      */
     static findByIdSite (req, res) {
 
-        site_customer.findByIdSite(req.params.id, function(err, site_customer){
+        site_customer.findByIdSite(req.params.idSite, function(err, site_customer){
             
             if (err) res.send(err);
 
