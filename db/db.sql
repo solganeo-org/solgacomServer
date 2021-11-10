@@ -65,7 +65,6 @@ CREATE TABLE IF NOT EXISTS site (
     private_key VARCHAR(255) NOT NULL,
     public_key VARCHAR(255) NOT NULL,
     url_amazon VARCHAR(255) NOT NULL,
-    id_site_rule BIGINT UNSIGNED,
     active BOOLEAN NOT NULL DEFAULT '1'
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
