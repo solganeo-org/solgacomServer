@@ -69,7 +69,7 @@ class Site_rule {
      */
     static findByContactId(contactId, result) {
 
-        dbConn.query(`SELECT s.name, s.id, s.url, s.domain, s.icon_path, s.private_key, s.public_key, s.active
+        dbConn.query(`SELECT s.name, s.id, s.url, s.domain, s.icon_path, s.private_key, s.public_key, s.active, s.url_amazon
                         FROM site AS s
                         INNER JOIN site_rule AS sr ON s.id = sr.id_site
                         WHERE sr.id_contact`, contactId, function(err, res){
