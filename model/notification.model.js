@@ -14,8 +14,12 @@ class Notification {
     constructor(notification) {
 
         this.id                 = notification.id;
+        this.id_contact         = notification.id_contact;
         this.title              = notification.title;
         this.content            = notification.content;
+        this.urlImage           = notification.urlImage;
+        this.urlButton          = notification.urlButton;
+        this.urlRed             = notification.urlRed;
         this.status             = notification.status;
         this.active             = notification.active;
 
@@ -30,7 +34,7 @@ class Notification {
      * @returns {Result}    result MySQL object
      */
     static create(notification, result) {
-
+        console.log(notification)
         dbConn.query(`INSERT INTO notification SET ?`, notification, function(err, res){
 
             (err) ? result(err, null) : result(null, res.insertId);
@@ -87,7 +91,7 @@ class Notification {
 
         dbConn.query(`UPDATE notification 
                         SET title = ?, content = ?, status = ?
-                        WHERE id = ?`, [notification.title, notification.content, notification.status, id], 
+                        WHERE id = ?`, [notification.title, notification.content, notification.status, notification.urlImage, notification.urlButton, notification.urlRed, id], 
                         
                         function(err, res) {
                             

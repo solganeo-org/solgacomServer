@@ -143,7 +143,11 @@ CREATE TABLE IF NOT EXISTS notification (
     id BIGINT UNSIGNED,
     id_automation BIGINT UNSIGNED,
     title VARCHAR(200) NOT NULL,
+    id_contact BIGINT UNSIGNED,
     content VARCHAR(500) NOT NULL,
+    urlImage VARCHAR(255) NOT NULL,
+    urlButton VARCHAR(255) NOT NULL,
+    urlRed VARCHAR(255) NOT NULL,
     status VARCHAR(50) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT '1'
 
