@@ -35,7 +35,7 @@ class Notification {
      * @returns {Result}    result MySQL object
      */
     static create(notification, result) {
-        
+        console.log(notification)
         dbConn.query(`INSERT INTO notification SET ?`, notification, function(err, res){
 
             (err) ? result(err, null) : result(null, res.insertId);
