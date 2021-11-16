@@ -15,6 +15,7 @@ class Notification {
 
         this.id                 = notification.id;
         this.id_contact         = notification.id_contact;
+        this.id_site            = notification.id_site;
         this.title              = notification.title;
         this.content            = notification.content;
         this.urlImage           = notification.urlImage;
@@ -34,7 +35,7 @@ class Notification {
      * @returns {Result}    result MySQL object
      */
     static create(notification, result) {
-        console.log(notification)
+        
         dbConn.query(`INSERT INTO notification SET ?`, notification, function(err, res){
 
             (err) ? result(err, null) : result(null, res.insertId);
@@ -54,6 +55,44 @@ class Notification {
     static findById(id, result) {
 
         dbConn.query("SELECT * FROM notification WHERE id = ?", id, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
+      /**
+     * Search an site_rule based on its email field
+     * 
+     * @param   {string}     email   email site_rule
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result}    site_rule JSON if there is no error
+     */
+       static findByContactId(contactId, result) {
+
+        dbConn.query(`SELECT n.title, n.content, n.urlButton, n.urlImage, n.urlRed, n.status
+                        FROM notification AS n
+                        WHERE n.id_contact`, contactId, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
+    /**
+     * Search an site_rule based on its email field
+     * 
+     * @param   {string}     email   email site_rule
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result}    site_rule JSON if there is no error
+     */
+     static findBySiteId(siteId, result) {
+
+        dbConn.query(`SELECT * FROM notification WHERE notification.id_site = ? `, siteId, function(err, res){
 
             (err) ? result(err, null) : result(null, res);
             
@@ -88,7 +127,7 @@ class Notification {
      * @returns {Result} Result MySQL Object
      */
     static update(id, notification, result) {
-
+        console.log(notification)
         dbConn.query(`UPDATE notification 
                         SET title = ?, content = ?, status = ?
                         WHERE id = ?`, [notification.title, notification.content, notification.status, notification.urlImage, notification.urlButton, notification.urlRed, id], 

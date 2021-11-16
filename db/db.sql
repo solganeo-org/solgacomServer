@@ -144,6 +144,7 @@ CREATE TABLE IF NOT EXISTS notification (
     id_automation BIGINT UNSIGNED,
     title VARCHAR(200) NOT NULL,
     id_contact BIGINT UNSIGNED,
+    id_site BIGINT UNSIGNED,
     content VARCHAR(500) NOT NULL,
     urlImage VARCHAR(255) NOT NULL,
     urlButton VARCHAR(255) NOT NULL,

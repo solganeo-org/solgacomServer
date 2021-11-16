@@ -68,6 +68,24 @@ class SiteCustomerController{
      * @param  {} req
      * @param  {} res
      */
+     static findByCustomerId(req, res){
+
+        site_customer.findByCustomerId(req.params.id_customer, function(err, site_customer){
+            
+            if (err) res.send(err);
+
+            res.json(site_customer);
+            
+        });
+
+    }
+
+    /**
+     * Calls site_customer.findById() static method and send a HTTP response
+     * 
+     * @param  {} req
+     * @param  {} res
+     */
     static findById(req, res){
 
         site_customer.findById(req.params.id, function(err, site_customer){

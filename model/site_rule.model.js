@@ -32,7 +32,7 @@ class Site_rule {
      * @returns {Result}    result MySQL object
      */
     static create(site_rule, result) {
-        console.log(result.toString())
+        
         dbConn.query("INSERT INTO site_rule SET ?", site_rule , function(err, res){
             (err) ? result(err, null) : result(null, res.insertId);
 

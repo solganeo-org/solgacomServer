@@ -11,7 +11,8 @@ router.get('/', SiteCustomerController.findAll);
 router.post('/', SiteCustomerController.create);
 
 // Retrieve a single user with email
-router.get('/site-id/:idSite', SiteCustomerController.findByIdSite)
+router.get('/site-id/:idSite', SiteCustomerController.findByIdSite);
+router.get('/customers-id/:id_customer', SiteCustomerController.findByCustomerId);
 router.get('/id/:id', SiteCustomerController.findById);
 
 // Update a User with email

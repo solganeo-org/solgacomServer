@@ -63,6 +63,27 @@ class Site_customer{
      * 
      * @returns {Result}    site_customer JSON if there is no error
      */
+     static findByCustomerId(id, result) {
+
+        dbConn.query(`SELECT c.id, c.endpoint, c.key_auth, c.key_p256dh, c.device 
+                        FROM customer AS c 
+                        INNER JOIN site_customer AS sc ON c.id = sc.id_customer
+                        WHERE sc.id_customer = ?`, id, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
+    /**
+     * Search an site_customer based on its email field
+     * 
+     * @param   {string}     email   email site_customer
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result}    site_customer JSON if there is no error
+     */
     static findByIdSite(id, result) {
 
         dbConn.query(`SELECT c.id, c.endpoint, c.key_auth, c.key_p256dh, c.device 
