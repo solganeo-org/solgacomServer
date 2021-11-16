@@ -151,10 +151,8 @@ class Notification {
      * @returns {Result}    Result MySQL Object
      */
     static delete(id, result) {
-
-        dbConn.query(`UPDATE notification 
-                        SET active = 0
-                        WHERE id = ?`, id, function(err, res){
+        console.log(result)
+        dbConn.query(`DELETE FROM notification WHERE id = ?`, id, function(err, res){
 
             (err) ? result(err, null) : result(null, res);
 
