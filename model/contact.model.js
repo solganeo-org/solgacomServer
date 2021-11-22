@@ -13,6 +13,7 @@ class Contact {
     constructor(contact) {
 
         this.id                 =   contact.id;
+        this.id_profile         =   contact.id_profile;
         this.first_name         =   contact.first_name;
         this.last_name          =   contact.last_name;
         this.email              =   contact.email;

@@ -81,6 +81,24 @@ class ProfileController{
     }
 
     /**
+     * Calls profile.findById() static method and send a HTTP response
+     * 
+     * @param  {} req
+     * @param  {} res
+     */
+     static findByAccountId(req, res){
+
+        profile.findByAccountId(req.params.account_id, function(err, profile){
+            
+            if (err) res.send(err);
+
+            res.json(profile);
+            
+        });
+
+    }
+
+    /**
      * Calls profile.update() static method and send a HTTP response
      * 
      * @param  {} req

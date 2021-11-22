@@ -68,7 +68,7 @@ class Site_customer{
         dbConn.query(`SELECT c.id, c.endpoint, c.key_auth, c.key_p256dh, c.device 
                         FROM customer AS c 
                         INNER JOIN site_customer AS sc ON c.id = sc.id_customer
-                        WHERE sc.id_customer = ?`, id, function(err, res){
+                        WHERE sc.id_site = ?`, id, function(err, res){
 
             (err) ? result(err, null) : result(null, res);
             

@@ -152,7 +152,7 @@ class Notification {
      */
     static delete(id, result) {
         console.log(result)
-        dbConn.query(`DELETE FROM notification WHERE id = ?`, id, function(err, res){
+        dbConn.query(`DELETE FROM notification WHERE notification.id = ?`, id, function(err, res){
 
             (err) ? result(err, null) : result(null, res);
 

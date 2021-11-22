@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS contact (
     fonction VARCHAR(50) NOT NULL,
     icon_path VARCHAR(255) DEFAULT '',
     id_account BIGINT UNSIGNED,
+    id_profile BIGINT UNSIGNED,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     last_modification VARCHAR(50) NOT NULL,
@@ -99,6 +100,7 @@ CREATE TABLE IF NOT EXISTS profile (
     create_contact BOOLEAN NOT NULL DEFAULT '0',
     modify_contact BOOLEAN NOT NULL DEFAULT '0',
     delete_contact BOOLEAN NOT NULL DEFAULT '0',
+    id_account BIGINT UNSIGNED,
     active BOOLEAN NOT NULL DEFAULT '1'
     
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
