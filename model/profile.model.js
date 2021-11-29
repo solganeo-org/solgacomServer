@@ -58,6 +58,24 @@ class Profile {
 
     }
 
+     /**
+     * Search an profile based on its id field
+     * 
+     * @param   {int}    id     profile id
+     * @param   {Result} result Result MySQL object
+     * 
+     * @returns {Result} profile 
+     */
+      static findByIdNameProfile(id, result) {
+
+        dbConn.query("SELECT profile.name FROM profile WHERE id = ?", id, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
         /**
      * Search an profile based on its id field
      * 
@@ -138,6 +156,24 @@ class Profile {
         })
 
     }
+
+        /**
+     * Delete an notification based on its id
+     * 
+     * @param   {int}        id      notification id
+     * @param   {Result}    result  Result MySQL object
+     * 
+     * @returns {Result}    Result MySQL Object
+     */
+         static delete(id, result) {
+            console.log(result)
+            dbConn.query(`DELETE FROM profile WHERE profile.id = ?`, id, function(err, res){
+    
+                (err) ? result(err, null) : result(null, res);
+    
+            })
+    
+        }
 
 }
 

@@ -12,7 +12,7 @@ router.post('/', SiteRuleController.create);
 
 // Retrieve a single user with email
 router.get('/id/:id', SiteRuleController.findById);
-router.get('/contact-id/:id_contact', SiteRuleController.findByContactId);
+router.get('/contact-id/:id', SiteRuleController.findByContactId);
 
 // Update a User with email
 router.put('/:id', SiteRuleController.update);
