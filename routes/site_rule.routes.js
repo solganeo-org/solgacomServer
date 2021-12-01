@@ -18,6 +18,6 @@ router.get('/contact-id/:id', SiteRuleController.findByContactId);
 router.put('/:id', SiteRuleController.update);
 
 // Delete a employee with email
-router.delete('/:id', SiteRuleController.delete);
+router.delete('/delete/:id', SiteRuleController.delete);
 
 module.exports = router

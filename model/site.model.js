@@ -125,7 +125,7 @@ class Site {
      * @returns {Result}    Result MySQL Object
      */
     static delete(id, result) {
-
+        console.log(id)
         dbConn.query("DELETE FROM site WHERE id = ?", id, function(err, res){
 
             (err) ? result(err, null) : result(null, res);

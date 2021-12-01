@@ -186,7 +186,6 @@ CREATE TABLE IF NOT EXISTS tracking (
 
 -- -----------------------------------------------------
 
-INSERT INTO profile (name, read_site, create_contact, modify_contact, delete_contact, active) VALUES ("Admin", '1', '1', '1', '1', '1');
 
 -- -----------------------------------------------------
 

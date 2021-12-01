@@ -127,15 +127,9 @@ class Site_rule {
    * @returns {Result}    Result MySQL Object
    */
   static delete(id, result) {
-    dbConn.query(
-      `UPDATE site_client 
-                        SET active = 0
-                        WHERE id = ?`,
-      id,
-      function (err, res) {
-        err ? result(err, null) : result(null, res);
-      }
-    );
+    dbConn.query(`DELETE FROM site_rule WHERE id_site = ?`, id, function (err, res) {
+      err ? result(err, null) : result(null, res);
+    });
   }
 }
 
