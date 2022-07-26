@@ -4,11 +4,12 @@ on:
     types: [opened, reopened, ready_for_review]
 jobs:
   chat:
+    name: google-chat
     runs-on: ubuntu-latest
     steps:
-      name: "Print ENV Variable"
-      env:
-        TEXT: WEBHOOK Variable
-        GOOGLE_CHAT_WEBHOOK: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
-      run: |
+      - name: "Print ENV Variable"
+        env:
+          TEXT: WEBHOOK Variable
+          GOOGLE_CHAT_WEBHOOK: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
+        run: |
         echo $TEXT $GOOGLE_CHAT_WEBHOOK
