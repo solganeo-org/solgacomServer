@@ -8,7 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: delivery-much/actions-chat@v1
-        env:
-          GOOGLE_CHAT_WEBHOOK: https://chat.googleapis.com/v1/spaces/AAAAtng2u4E/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=HRTFx-JCunUavy2nm4tYpwrEkxRi1p4MJ4KM1xwNvsE%3D
         with:
           url: https://chat.googleapis.com/v1/spaces/AAAAtng2u4E/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=HRTFx-JCunUavy2nm4tYpwrEkxRi1p4MJ4KM1xwNvsE%3D
