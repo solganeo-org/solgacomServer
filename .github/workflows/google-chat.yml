@@ -6,10 +6,9 @@ jobs:
   chat:
     runs-on: ubuntu-latest
     steps:
-      - name: "Print ENV Variable"
+      name: "Print ENV Variable"
       env:
-        TEXT: WEBHOOK Variable 
+        TEXT: WEBHOOK Variable
         GOOGLE_CHAT_WEBHOOK: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
       run: |
         echo $TEXT $GOOGLE_CHAT_WEBHOOK
-
