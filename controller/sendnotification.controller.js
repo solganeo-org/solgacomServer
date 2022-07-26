@@ -1,31 +1,28 @@
 const webpush = require('web-push')
 
 class SendNotification {
+  constructor () {}
 
-    constructor(){}
+  static send (req, res) {
+    const vapidDetails = req.body.vapidDetails
+    const pushSubscription = req.body.pushSubscription
+    const payload = req.body.payload
 
-    static send(req, res) {
+    webpush.setVapidDetails(
+      vapidDetails.mailto,
+      vapidDetails.publicKey,
+      vapidDetails.privateKey
+    )
 
-        let vapidDetails = req.body.vapidDetails
-        let pushSubscription = req.body.pushSubscription
-        let payload = req.body.payload
+    webpush.sendNotification(pushSubscription, payload)
 
-        webpush.setVapidDetails(
-            vapidDetails.mailto,
-            vapidDetails.publicKey,
-            vapidDetails.privateKey
-          );
+    res.json({
 
-        webpush.sendNotification(pushSubscription, payload);
+      error: false,
+      message: 'Notification Sent'
 
-        res.json({
-
-            error: false,
-            message: 'Notification Sent'
-
-        })
-        
-    }
+    })
+  }
 }
 
-module.exports = SendNotification;
+module.exports = SendNotification
