@@ -33,7 +33,6 @@ class Site {
      * @returns {Result}    result MySQL object
      */
     static create(site, result) {
-
         dbConn.query("INSERT INTO site SET ?", site , function(err, res){
 
             (err) ? result(err, null) : result(null, res.insertId);

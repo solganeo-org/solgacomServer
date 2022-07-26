@@ -81,24 +81,6 @@ class ProfileController{
     }
 
     /**
-     * Calls profile.findByEmail() static method and send a HTTP response
-     * 
-     * @param  {} req
-     * @param  {} res
-     */
-    static findByEmail (req, res) {
-
-        profile.findByEmail(req.params.email, function(err, profile){
-            
-            if (err) res.send(err);
-
-            res.json(profile);
-            
-        });
-
-    }
-
-    /**
      * Calls profile.update() static method and send a HTTP response
      * 
      * @param  {} req

@@ -58,25 +58,6 @@ class Notification {
     }
 
     /**
-     * Search an notification based on its email field
-     * 
-     * @param  {string}     email   email notification
-     * @param   {Result}    result  Result MySQL object
-     * 
-     * @returns {Result}    notification JSON if there is no error
-     */
-    static findByEmail(email, result) {
-
-        dbConn.query("SELECT * FROM notification WHERE email = ?", email, function(err, res){
-
-            (err) ? result(err, null) : result(null, res);
-
-        })
-
-
-    }
-
-    /**
      * Search all the notifications
      * 
      * @param  {int}        id      notification id
@@ -105,8 +86,8 @@ class Notification {
     static update(id, notification, result) {
 
         dbConn.query(`UPDATE notification 
-                        SET nb_employees = ?, society_name = ?, siret = ?, country = ?, phone_number = ?, email = ?, icon_path = ?
-                        WHERE id = ?`, [notification.nb_employees, notification.society_name, notification.siret, notification.country, notification.phone_number, notification.email, notification.icon_path, id], 
+                        SET title = ?, content = ?, status = ?
+                        WHERE id = ?`, [notification.title, notification.content, notification.status, id], 
                         
                         function(err, res) {
                             

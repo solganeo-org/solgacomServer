@@ -20,6 +20,8 @@ class Contact {
         this.icon_path          =   contact.icon_path;
         this.id_account         =   contact.id_account;
         this.last_modification  =   contact.last_modification;
+        this.username           =   contact.username;
+        this.password           =   contact.password;
         this.active             =   contact.active;
 
     }
@@ -108,7 +110,7 @@ class Contact {
     static update(id, contact, result) {
 
         dbConn.query(`UPDATE contact 
-                        SET first_name = ?, last_name = ?, email = ?, function = ?, icon_path = ?, id_account = ?, created_by = ?, modified_by = ?, last_modification = ?
+                        SET first_name = ?, last_name = ?, email = ?, function = ?, icon_path = ?, id_account = ?, created_by = ?, modified_by = ?, last_modification = ?, username = ?, password = ?
                         WHERE id = ?`, [contact.first_name, contact.last_name, contact.email, contact.function, contact.icon_path, contact.id_account, contact.created_by, contact.modified_by, contact.last_modification, id], function(err, res) {
                             
                             (err) ? result(err, null) : result(null, res);

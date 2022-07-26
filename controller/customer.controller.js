@@ -1,38 +1,38 @@
 'use strict'
 
-const site = require('../model/site.model');
+const customer = require('../model/customer.model');
 
-class SiteController{
+class CustomerController{
 
     /**
      */
     constructor(){}
 
     /**
-     * Calls site.findAll() static method and send a HTTP response
+     * Calls customer.findAll() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findAll(req, res) {
 
-        site.findAll(function(err, site){
+        customer.findAll(function(err, customer){
 
-            (err) ? res.send(err) : res.send(site);
+            (err) ? res.send(err) : res.send(customer);
 
         });
 
     }
 
     /**
-     * Calls site.create() static method and send a HTTP response
+     * Calls customer.create() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static create(req, res) {
 
-        const newsite = new site(req.body);
+        const newcustomer = new customer(req.body);
 
         // handle null errors
 
@@ -44,15 +44,15 @@ class SiteController{
 
         else {
 
-            site.create(newsite, function(err, site){
+            customer.create(newcustomer, function(err, customer){
 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: "site Added Successfully!",
-                    data: site
+                    message: "customer Added Successfully!",
+                    data: customer
 
                 })
 
@@ -63,43 +63,43 @@ class SiteController{
     }
 
     /**
-     * Calls site.findById() static method and send a HTTP response
+     * Calls customer.findById() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findById(req, res){
 
-        site.findById(req.params.id, function(err, site){
+        customer.findById(req.params.id, function(err, customer){
             
             if (err) res.send(err);
 
-            res.json(site);
+            res.json(customer);
             
         });
 
     }
 
     /**
-     * Calls site.findByEmail() static method and send a HTTP response
+     * Calls customer.findByEmail() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static findByEmail (req, res) {
 
-        site.findByEmail(req.params.email, function(err, site){
+        customer.findByEmail(req.params.email, function(err, customer){
             
             if (err) res.send(err);
 
-            res.json(site);
+            res.json(customer);
             
         });
 
     }
 
     /**
-     * Calls site.update() static method and send a HTTP response
+     * Calls customer.update() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
@@ -119,14 +119,14 @@ class SiteController{
 
         else {
 
-            site.update(req.params.id, new site(req.body), function(err, site){
+            customer.update(req.params.id, new customer(req.body), function(err, customer){
                 
                 if(err) res.send(err);
 
                 res.json({
                     
                     error: false,
-                    message: 'site Successfully Updated'
+                    message: 'customer Successfully Updated'
                     
                 })
                 
@@ -138,21 +138,21 @@ class SiteController{
     }
 
     /**
-     * Calls site.delete() static method and send a HTTP response
+     * Calls customer.delete() static method and send a HTTP response
      * 
      * @param  {} req
      * @param  {} res
      */
     static delete(req, res) {
 
-        site.delete(req.params.id, function(err, site) {
+        customer.delete(req.params.id, function(err, customer) {
             
             if(err) res.send(err);
 
             res.json({
 
                 error: false,
-                message: 'site Successfully Deleted'
+                message: 'customer Successfully Deleted'
 
             })
         })
@@ -161,4 +161,4 @@ class SiteController{
 
 }
 
-module.exports = SiteController;
+module.exports = CustomerController;
