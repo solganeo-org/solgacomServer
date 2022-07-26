@@ -12,4 +12,4 @@ jobs:
           TEXT: WEBHOOK Variable
           GOOGLE_CHAT_WEBHOOK: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
         run: |
-        echo $TEXT $GOOGLE_CHAT_WEBHOOK
+          echo $TEXT $GOOGLE_CHAT_WEBHOOK
