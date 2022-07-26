@@ -1,160 +1,126 @@
 'use strict'
 
-const notification = require('../model/notification.model');
+const notification = require('../model/notification.model')
 
-class notificationController{
-
-    /**
+class notificationController {
+  /**
      */
-    constructor(){}
+  constructor () {}
 
-    /**
+  /**
      * Calls notification.findAll() static method and send a HTTP response
-     * 
+     *
      * @param  {} req
      * @param  {} res
      */
-    static findAll(req, res) {
+  static findAll (req, res) {
+    notification.findAll(function (err, notification) {
+      (err) ? res.send(err) : res.send(notification)
+    })
+  }
 
-        notification.findAll(function(err, notification){
-
-            (err) ? res.send(err) : res.send(notification);
-
-        });
-
-    }
-
-    /**
+  /**
      * Calls notification.create() static method and send a HTTP response
-     * 
+     *
      * @param  {} req
      * @param  {} res
      */
-    static create(req, res) {
+  static create (req, res) {
+    const newnotification = new notification(req.body)
 
-        const newnotification = new notification(req.body);
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+      res.status(400).send({ error: true, message: 'Please Provide All the required fields' })
+    } else {
+      notification.create(newnotification, function (err, notification) {
+        if (err) res.send(err)
 
-        if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+        res.json({
 
-            res.status(400).send({ error: true, message: 'Please Provide All the required fields'})
+          error: false,
+          message: 'notification Added Successfully!',
+          data: notification
 
-        }
-
-        else {
-
-            notification.create(newnotification, function(err, notification){
-
-                if(err) res.send(err);
-
-                res.json({
-                    
-                    error: false,
-                    message: "notification Added Successfully!",
-                    data: notification
-
-                })
-
-            })
-
-        }
-
+        })
+      })
     }
+  }
 
-    /**
+  /**
      * Calls notification.findById() static method and send a HTTP response
-     * 
+     *
      * @param  {} req
      * @param  {} res
      */
-    static findById(req, res){
+  static findById (req, res) {
+    notification.findById(req.params.id, function (err, notification) {
+      if (err) res.send(err)
 
-        notification.findById(req.params.id, function(err, notification){
-            
-            if (err) res.send(err);
+      res.json(notification)
+    })
+  }
 
-            res.json(notification);
-            
-        })
-
-    }
-
-    /**
+  /**
      * Calls notification.findByEmail() static method and send a HTTP response
-     * 
+     *
      * @param  {} req
      * @param  {} res
      */
-    static findByEmail(req, res) {
+  static findByEmail (req, res) {
+    notification.findByEmail(req.params.email, function (err, notification) {
+      if (err) res.send(err)
 
-        notification.findByEmail(req.params.email, function(err, notification){
+      res.json(notification)
+    })
+  }
 
-            if(err) res.send(err);
-
-            res.json(notification);
-
-        })
-
-    }
-
-    /**
+  /**
      * Calls notification.update() static method and send a HTTP response
-     * 
+     *
      * @param  {} req
      * @param  {} res
      */
-    static update (req, res) {
+  static update (req, res) {
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+      res.status(400).send({
 
-        if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
+        error: true,
+        message: 'Please Provide All Required Fileds'
 
-            res.status(400).send({
-                
-                error: true,
-                message: "Please Provide All Required Fileds"
-                
-            });
+      })
+    } else {
+      notification.update(req.params.id, new notification(req.body), function (err, notification) {
+        if (err) res.send(err)
 
-        }
+        res.json({
 
-        else {
+          error: false,
+          message: 'notification Successfully Updated',
+          notification: notification
 
-            notification.update(req.params.id, new notification(req.body), function(err, notification){
-                
-                if(err) res.send(err);
-
-                res.json({
-                    
-                    error: false,
-                    message: 'notification Successfully Updated'
-                    
-                })
-                
-            })
-
-        }
-   
-    }
-
-    /**
-     * Calls notification.delete() static method and send a HTTP response
-     * 
-     * @param  {} req
-     * @param  {} res
-     */
-    static delete(req, res) {
-
-        notification.delete(req.params.id, function(err, notification) {
-            
-            if(err) res.send(err);
-
-            res.json({
-
-                error: false,
-                message: 'notification Successfully Deleted'
-
-            })
         })
+      })
     }
+  }
 
+  /**
+     * Calls notification.delete() static method and send a HTTP response
+     *
+     * @param  {} req
+     * @param  {} res
+     */
+  static delete (req, res) {
+    notification.delete(req.params.id, function (err, notification) {
+      if (err) res.send(err)
+
+      res.json({
+
+        error: false,
+        message: 'notification Successfully Deleted',
+        notification: notification
+
+      })
+    })
+  }
 }
 
-module.exports = notificationController;
+module.exports = notificationController
