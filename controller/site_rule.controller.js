@@ -68,7 +68,7 @@ class SiteRuleController {
      * @param  {} res
      */
   static findByContactId (req, res) {
-    site_rule.findByConbtactId(req.params.id, function (err, site_rule) {
+    site_rule.findByContactId(req.params.id, function (err, site_rule) {
       if (err) res.send(err)
 
       res.json(site_rule)
