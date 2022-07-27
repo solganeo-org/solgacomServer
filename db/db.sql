@@ -20,7 +20,7 @@ USE solganeo_web_push;
 CREATE TABLE IF NOT EXISTS account (
 
     id BIGINT UNSIGNED,
-    nb_employees VARCHAR(50) NOT NULL,
+    nb_employees VARCHAR(255) NOT NULL,
     society_name VARCHAR(50) NOT NULL,
     siret VARCHAR(20) NOT NULL UNIQUE,
     country VARCHAR(5) NOT NULL,
@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS contact (
     fonction VARCHAR(50) NOT NULL,
     icon_path VARCHAR(255) DEFAULT '',
     id_account BIGINT UNSIGNED,
+    id_profile BIGINT UNSIGNED,
     username VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     last_modification VARCHAR(50) NOT NULL,
@@ -99,6 +100,7 @@ CREATE TABLE IF NOT EXISTS profile (
     create_contact BOOLEAN NOT NULL DEFAULT '0',
     modify_contact BOOLEAN NOT NULL DEFAULT '0',
     delete_contact BOOLEAN NOT NULL DEFAULT '0',
+    id_account BIGINT UNSIGNED,
     active BOOLEAN NOT NULL DEFAULT '1'
     
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -143,7 +145,12 @@ CREATE TABLE IF NOT EXISTS notification (
     id BIGINT UNSIGNED,
     id_automation BIGINT UNSIGNED,
     title VARCHAR(200) NOT NULL,
+    id_contact BIGINT UNSIGNED,
+    id_site BIGINT UNSIGNED,
     content VARCHAR(500) NOT NULL,
+    urlImage VARCHAR(255) NOT NULL,
+    urlButton VARCHAR(255) NOT NULL,
+    urlRed VARCHAR(255) NOT NULL,
     status VARCHAR(50) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT '1'
 
@@ -179,7 +186,6 @@ CREATE TABLE IF NOT EXISTS tracking (
 
 -- -----------------------------------------------------
 
-INSERT INTO profile (name, read_site, create_contact, modify_contact, delete_contact, active) VALUES ("Admin", '1', '1', '1', '1', '1');
 
 -- -----------------------------------------------------
 
