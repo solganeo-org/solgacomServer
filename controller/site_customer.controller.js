@@ -144,7 +144,8 @@ class SiteCustomerController{
                 res.json({
                     
                     error: false,
-                    message: 'site_customer Successfully Updated'
+                    message: 'site_customer Successfully Updated',
+                    site_customer: site_customer
                     
                 })
                 
@@ -170,7 +171,8 @@ class SiteCustomerController{
             res.json({
 
                 error: false,
-                message: 'site_customer Successfully Deleted'
+                message: 'site_customer Successfully Deleted',
+                site_customer: site_customer
 
             })
         })

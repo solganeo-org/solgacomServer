@@ -126,6 +126,7 @@ class notificationController {
           res.json({
             error: false,
             message: "notification Successfully Updated",
+            notification: notification
           });
         }
       );
@@ -145,6 +146,7 @@ class notificationController {
       res.json({
         error: false,
         message: "notification Successfully Deleted",
+        notification: notification
       });
     });
   }

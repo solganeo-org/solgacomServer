@@ -144,7 +144,8 @@ class ProfileController{
                 res.json({
                     
                     error: false,
-                    message: 'profile Successfully Updated'
+                    message: 'profile Successfully Updated',
+                    profile: profile
                     
                 })
                 
@@ -170,7 +171,8 @@ class ProfileController{
             res.json({
 
                 error: false,
-                message: 'profile Successfully Deleted'
+                message: 'profile Successfully Deleted',
+                profile: profile
 
             })
         })

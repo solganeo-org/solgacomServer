@@ -1,6 +1,6 @@
 'use strict'
 
-var dbConn = require('../config/db.config');
+const dbConn = require('../config/db.config')
 
 class Profile {
 
@@ -134,26 +134,6 @@ class Profile {
                         }
 
         );
-
-    }
-
-    /**
-     * Delete an profile based on its id
-     * 
-     * @param   {int}        id      profile id
-     * @param   {Result}    result  Result MySQL object
-     * 
-     * @returns {Result}    Result MySQL Object
-     */
-    static delete(id, result) {
-
-        dbConn.query(`UPDATE profile 
-                        SET active = 0
-                        WHERE id = ?`, id, function(err, res){
-
-            (err) ? result(err, null) : result(null, res);
-
-        })
 
     }
 

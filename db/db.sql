@@ -20,7 +20,7 @@ USE solganeo_web_push;
 CREATE TABLE IF NOT EXISTS account (
 
     id BIGINT UNSIGNED,
-    nb_employees int NOT NULL,
+    nb_employees VARCHAR(255) NOT NULL,
     society_name VARCHAR(50) NOT NULL,
     siret VARCHAR(20) NOT NULL UNIQUE,
     country VARCHAR(5) NOT NULL,

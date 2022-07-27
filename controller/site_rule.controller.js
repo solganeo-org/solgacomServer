@@ -126,7 +126,8 @@ class SiteRuleController{
                 res.json({
                     
                     error: false,
-                    message: 'site_rule Successfully Updated'
+                    message: 'site_rule Successfully Updated',
+                    site_rule: site_rule
                     
                 })
                 
@@ -152,7 +153,8 @@ class SiteRuleController{
             res.json({
 
                 error: false,
-                message: 'site_rule Successfully Deleted'
+                message: 'site_rule Successfully Deleted',
+                site_rule: site_rule
 
             })
         })

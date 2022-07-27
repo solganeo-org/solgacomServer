@@ -112,27 +112,11 @@ class ContactController {
           res.json({
             error: false,
             message: "contact Successfully Updated",
+            contact: contact
           });
         }
       );
     }
-  }
-
-  /**
-   * Calls profile.delete() static method and send a HTTP response
-   *
-   * @param  {} req
-   * @param  {} res
-   */
-  static delete(req, res) {
-    profile.delete(req.params.id, function (err, profile) {
-      if (err) res.send(err);
-
-      res.json({
-        error: false,
-        message: "profile Successfully Deleted",
-      });
-    });
   }
 
   /**
@@ -148,6 +132,7 @@ class ContactController {
       res.json({
         error: false,
         message: "contact Successfully Deleted",
+        contact: contact
       });
     });
   }
