@@ -1,6 +1,6 @@
 'use strict'
 
-var dbConn = require('../config/db.config');
+const dbConn = require('../config/db.config')
 
 class Profile {
 
@@ -13,6 +13,7 @@ class Profile {
     constructor(profile) {
 
         this.id                     =   profile.id;
+        this.id_account             =   profile.id_account;
         this.name                   =   profile.name;
         this.read_site              =   profile.read_site;
         this.create_contact         =   profile.create_contact;
@@ -31,7 +32,6 @@ class Profile {
      * @returns {Result}    result MySQL object
      */
     static create(profile, result) {
-
         dbConn.query("INSERT INTO profile SET ?", profile , function(err, res){
 
             (err) ? result(err, null) : result(null, res.insertId);
@@ -57,6 +57,44 @@ class Profile {
         });
 
     }
+
+     /**
+     * Search an profile based on its id field
+     * 
+     * @param   {int}    id     profile id
+     * @param   {Result} result Result MySQL object
+     * 
+     * @returns {Result} profile 
+     */
+      static findByIdNameProfile(id, result) {
+
+        dbConn.query("SELECT profile.name FROM profile WHERE id = ?", id, function(err, res){
+
+            (err) ? result(err, null) : result(null, res);
+            
+        });
+
+    }
+
+        /**
+     * Search an profile based on its id field
+     * 
+     * @param   {int}    id     profile id
+     * @param   {Result} result Result MySQL object
+     * 
+     * @returns {Result} profile 
+     */
+         static findByAccountId(account_id, result) {
+
+            dbConn.query("SELECT * FROM profile WHERE id_account = ?", account_id, function(err, res){
+    
+                (err) ? result(err, null) : result(null, res);
+                
+            });
+    
+        }
+
+    
 
     /**
      * Search all the profile
@@ -99,25 +137,23 @@ class Profile {
 
     }
 
-    /**
-     * Delete an profile based on its id
+        /**
+     * Delete an notification based on its id
      * 
-     * @param   {int}        id      profile id
+     * @param   {int}        id      notification id
      * @param   {Result}    result  Result MySQL object
      * 
      * @returns {Result}    Result MySQL Object
      */
-    static delete(id, result) {
-
-        dbConn.query(`UPDATE profile 
-                        SET active = 0
-                        WHERE id = ?`, id, function(err, res){
-
-            (err) ? result(err, null) : result(null, res);
-
-        })
-
-    }
+         static delete(id, result) {
+            console.log(result)
+            dbConn.query(`DELETE FROM profile WHERE profile.id = ?`, id, function(err, res){
+    
+                (err) ? result(err, null) : result(null, res);
+    
+            })
+    
+        }
 
 }
 

@@ -17,6 +17,6 @@ router.get('/id/:id', siteController.findById);
 router.put('/:id', siteController.update);
 
 // Delete a employee with email
-router.delete('/:id', siteController.delete);
+router.delete('/delete/:id', siteController.delete);
 
 module.exports = router

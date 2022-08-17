@@ -12,11 +12,13 @@ router.post('/', ProfileController.create);
 
 // Retrieve a single user with email
 router.get('/id/:id', ProfileController.findById);
+router.get('/idProfileName/:id', ProfileController.findByIdNameProfile);
+router.get('/account-id/:account_id', ProfileController.findByAccountId);
 
 // Update a User with email
 router.put('/:id', ProfileController.update);
 
 // Delete a employee with email
-router.delete('/:id', ProfileController.delete);
+router.delete('/delete/:id', ProfileController.delete);
 
 module.exports = router

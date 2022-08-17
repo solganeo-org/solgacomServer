@@ -68,6 +68,24 @@ class SiteCustomerController{
      * @param  {} req
      * @param  {} res
      */
+     static findByCustomerId(req, res){
+
+        site_customer.findByCustomerId(req.params.id_customer, function(err, site_customer){
+            
+            if (err) res.send(err);
+
+            res.json(site_customer);
+            
+        });
+
+    }
+
+    /**
+     * Calls site_customer.findById() static method and send a HTTP response
+     * 
+     * @param  {} req
+     * @param  {} res
+     */
     static findById(req, res){
 
         site_customer.findById(req.params.id, function(err, site_customer){
@@ -126,7 +144,8 @@ class SiteCustomerController{
                 res.json({
                     
                     error: false,
-                    message: 'site_customer Successfully Updated'
+                    message: 'site_customer Successfully Updated',
+                    site_customer: site_customer
                     
                 })
                 
@@ -152,7 +171,8 @@ class SiteCustomerController{
             res.json({
 
                 error: false,
-                message: 'site_customer Successfully Deleted'
+                message: 'site_customer Successfully Deleted',
+                site_customer: site_customer
 
             })
         })
