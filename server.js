@@ -3,15 +3,22 @@ const bodyParser = require('body-parser');
 
 // create express app
 const app = express();
+const fs = require('fs');
 
 // Setup server port
 const port = process.env.PORT || 5000;
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+const customCss = fs.readFileSync((process.cwd()+"/swagger.css"), 'utf8');
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
+
+//swagger docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -23,11 +30,6 @@ app.use(function(req, res, next) {
     "PUT, GET, POST, DELETE, OPTIONS"
   );
   next();
-});
-
-// define a root route
-app.get('/', (req, res) => {
-  res.send("Hello World");
 });
 
 // Require User routes

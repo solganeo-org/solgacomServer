@@ -1,0 +1,1950 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Solganeo Web Push Call API Documentation",
+        "version": "2.0.0",
+        "title": "Solganeo Web Push API",
+        "contact": {
+            "email": "it@solganeo.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3080",
+    "basePath": "/api",
+    "paths" : {
+        "/account/" : {
+            "get" : {
+                "summary" : "Get all Account",
+                "description": "Get all Account",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                     "type": "integer"
+                                },
+                                "nb_employees": {
+                                    "type": "string"
+                                },
+                                "society_name": {
+                                    "type": "string"
+                                },
+                                "siret": {
+                                    "type": "string"
+                                },
+                                "country": {
+                                    "type": "string"
+                                },
+                                "phone_number": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "icon_path": {
+                                    "type": "string"
+                                },
+                                "active": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Account"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accounts" : {
+            "post" : {
+                "summary" : "Create Account",
+                "description": "Create an account",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "name",
+                        "description": "account object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Task"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "account Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/accounts/email/{email}" : {
+            "get" : {
+                "summary" : "Find Account by Email",
+                "description": "ind Account by Email",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "accounts/id/{id}" : {
+            "get" : {
+                "summary" : "Find Account by id",
+                "description": "Find Account by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "accounts/{id}" : {
+            "put" : {
+                "summary" : "Update Account by id",
+                "description": "Update Account by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/accounts/{id}" : {
+            "delete" : {
+                "summary" : "Delete Account by id",
+                "description": "Delete Account by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "contact/" : {
+            "get" : {
+                "summary" : "Get all Contact",
+                "description": "Get all Contact",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "contacts/" : {
+            "post" : {
+                "summary" : "Create Contact",
+                "description": "Create an Contact",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "name",
+                        "description": "account object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Task"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contact Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/contacts/email/{email}" : {
+            "get" : {
+                "summary" : "Find Contact by Email",
+                "description": "ind Contact by Email",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/contacts/id/{id}" : {
+            "get" : {
+                "summary" : "Find Contact by id",
+                "description": "Find Contact by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/contacts/account-id/{account-id}" : {
+            "get" : {
+                "summary" : "Find Contact by account-id",
+                "description": "Find Contact by account-id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "contacts/{id}" : {
+            "put" : {
+                "summary" : "Update Contact by id",
+                "description": "Update Contact by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/contacts/{id}" : {
+            "delete" : {
+                "summary" : "Delete Contact by id",
+                "description": "Delete Contact by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "customers/" : {
+            "get" : {
+                "summary" : "Get all customers",
+                "description": "Get all customers",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/customers/" : {
+            "post" : {
+                "summary" : "Create customers",
+                "description": "Create an customers",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "name",
+                        "description": "customers object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Task"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "customers Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "customers/email/{email}" : {
+            "get" : {
+                "summary" : "Find customers by Email",
+                "description": "Find customers by Email",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/customers/id/{id}" : {
+            "get" : {
+                "summary" : "Find customers by id",
+                "description": "Find customers by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "customers/{id}" : {
+            "put" : {
+                "summary" : "Update customers by id",
+                "description": "Update customers by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/customers/{id}" : {
+            "delete" : {
+                "summary" : "Delete customers by id",
+                "description": "Delete customers by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            },
+            "notifications/" : {
+                "get" : {
+                    "summary" : "Get all notifications",
+                    "description": "Get all notifications",
+                    "produces": ["application/json"],
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Invalid status value",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "/notifications/" : {
+                "post" : {
+                    "summary" : "Create notifications",
+                    "description": "Create an customers",
+                    "produces": ["application/json"],
+                    "consumes": ["application/json"],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "name",
+                            "description": "notifications object",
+                            "required": true,
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "task" : {
+                                        "type": "object",
+                                        "$ref": "#/definitions/Notifications"
+                                    } 
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "notifications Added Successfully!",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Please Provide All the required fields",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "notifications/email/{email}" : {
+                "get" : {
+                    "summary" : "Find customers by Email",
+                    "description": "Find customers by Email",
+                    "produces": ["application/json"],
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Invalid status value",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "/notifications/id/{id}" : {
+                "get" : {
+                    "summary" : "Find notifications by id",
+                    "description": "Find notifications by id",
+                    "produces": ["application/json"],
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Invalid status value",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "/notifications/contact-id/{id_contact}" : {
+                "get" : {
+                    "summary" : "Find notifications by contact-id",
+                    "description": "Find notifications by contact-id",
+                    "produces": ["application/json"],
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Invalid status value",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "/notifications/site-id/{id_site}" : {
+                "get" : {
+                    "summary" : "Find notifications by site-id",
+                    "description": "Find notifications by site-id",
+                    "produces": ["application/json"],
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Invalid status value",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "notifications/{id}" : {
+                "put" : {
+                    "summary" : "Update notifications by id",
+                    "description": "Update notifications by id",
+                    "produces": ["application/json"],
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Invalid status value",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+            },
+
+            "/notifications/{id}" : {
+                "delete" : {
+                    "summary" : "Delete notifications by id",
+                    "description": "Delete notifications by id",
+                    "produces": ["application/json"],
+                    "parameters": [],
+                    "responses": {
+                        "200": {
+                            "description": "successful operation",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": ""
+                                }
+                            }
+                        },
+                        "400": {
+                            "description": "Invalid status value",
+                            "schema": {
+                                "$ref": ""
+                            }
+                        }
+                    }
+                }
+
+        },
+        "profile/" : {
+            "get" : {
+                "summary" : "Get all profile",
+                "description": "Get all profile",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        }
+        },
+        "/profile/" : {
+            "post" : {
+                "summary" : "Create profile",
+                "description": "Create an profile",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "name",
+                        "description": "profile object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/profile"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "profile Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "profile/idProfileName/{id}" : {
+            "get" : {
+                "summary" : "Find profile Name by Id",
+                "description": "Find profile Name by Id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/profile/id/{id}" : {
+            "get" : {
+                "summary" : "Find profile by id",
+                "description": "Find profile by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/profile/account-id/{id_account}" : {
+            "get" : {
+                "summary" : "Find profile by account-id",
+                "description": "Find profile by account-id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "profile/{id}" : {
+            "put" : {
+                "summary" : "Update profile by id",
+                "description": "Update profile by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/profile/{id}" : {
+            "delete" : {
+                "summary" : "Delete profile by id",
+                "description": "Delete profile by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/send-notification/" : {
+            "post" : {
+                "summary" : "Send a Notification To Customer",
+                "description": "Send a Notification To Customer",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "name",
+                        "description": "sendNotification object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/SendNotification"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification Sent'",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "sites-customers/" : {
+            "get" : {
+                "summary" : "Get all site_customer",
+                "description": "Get all site_customer",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/sites-customers/" : {
+            "post" : {
+                "summary" : "Create site_customer",
+                "description": "Create an site_customer",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "name",
+                        "description": "sites-customers object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/sites-customers"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "customers Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "sites-customers/site-id/{id_site}" : {
+            "get" : {
+                "summary" : "Find sites-customers by id_site",
+                "description": "Find sites-customers by id_site",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/sites-customers/id/{id}" : {
+            "get" : {
+                "summary" : "Find sites-customers by id",
+                "description": "Find sites-customers by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/sites-customers/customers-id/{id_customer}" : {
+            "get" : {
+                "summary" : "Find sites-customers by id_customer",
+                "description": "Find sites-customers by id_customer",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "sites-customers/{id}" : {
+            "put" : {
+                "summary" : "Update sites-customers by id",
+                "description": "Update sites-customers by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/sites-customers/{id}" : {
+            "delete" : {
+                "summary" : "Delete customers by id",
+                "description": "Delete customers by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "sites-rules/" : {
+            "get" : {
+                "summary" : "Get all site_rules",
+                "description": "Get all site_rules",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/sites-rules/" : {
+            "post" : {
+                "summary" : "Create site_rule",
+                "description": "Create an site_rule",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "name",
+                        "description": "sites-rule object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/sites-rules"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "rules Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "sites-rules/contact-id/{id_contact}" : {
+            "get" : {
+                "summary" : "Find sites-rules by id_contact",
+                "description": "Find sites-rules by id_contact",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/sites-rules/id/{id}" : {
+            "get" : {
+                "summary" : "Find sites-rules by id",
+                "description": "Find sites-rules by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "sites-rules/{id}" : {
+            "put" : {
+                "summary" : "Update sites-rules by id",
+                "description": "Update sites-rules by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/sites-rules/{id}" : {
+            "delete" : {
+                "summary" : "Delete sites-rules by id",
+                "description": "Delete sites-rules by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "site/" : {
+            "get" : {
+                "summary" : "Get all site",
+                "description": "Get all site",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/site" : {
+            "post" : {
+                "summary" : "Create site",
+                "description": "Create an site",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "site",
+                        "description": "site object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Site"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "site Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "site/id/{id}" : {
+            "get" : {
+                "summary" : "Find site by id",
+                "description": "Find site by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "site/{id}" : {
+            "put" : {
+                "summary" : "Update site by id",
+                "description": "Update site by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/site/{id}" : {
+            "delete" : {
+                "summary" : "Delete site by id",
+                "description": "Delete site by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "tracking/" : {
+            "get" : {
+                "summary" : "Get all tracking",
+                "description": "Get all tracking",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/tracking" : {
+            "post" : {
+                "summary" : "Create tracking",
+                "description": "Create a tracking",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "tracking",
+                        "description": "tracking object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "task" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Site"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "tracking Added Successfully!",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Please Provide All the required fields",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "tracking/id/{id}" : {
+            "get" : {
+                "summary" : "Find tracking by id",
+                "description": "Find tracking by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "tracking/{id}" : {
+            "put" : {
+                "summary" : "Update tracking by id",
+                "description": "Update tracking by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/tracking/{id}" : {
+            "delete" : {
+                "summary" : "Delete tracking by id",
+                "description": "Delete tracking by id",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": ""
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": ""
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+    }, 
+    "definitions": {
+        "Account": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "nb_employees": {
+                    "type": "string"
+                },
+                "society_name": {
+                    "type": "string"
+                },
+                "siret": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "icon_path": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Contact": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "id_profile": {
+                    "type": "integer"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "fonction": {
+                    "type": "string"
+                },
+                "icon_path": {
+                    "type": "string"
+                },
+                "id_account": {
+                    "type": "integer"
+                },
+                "last_modification": {
+                    "type": "date"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Customer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "endpoint": {
+                    "type": "string"
+                },
+                "key_auth": {
+                    "type": "string"
+                },
+                "key_p256dh": {
+                    "type": "string"
+                },
+                "device": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+            }
+
+        },
+        "Notification": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "id_contact": {
+                    "type": "integer"
+                },
+                "id_site": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "urlImage": {
+                    "type": "string"
+                },
+                "urlButton": {
+                    "type": "string"
+                },
+                "urlRed": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+            }
+
+        },
+        "profile": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "id_account": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "read_site": {
+                    "type": "boolean"
+                },
+                "create_contact": {
+                    "type": "boolean"
+                },
+                "modify_contact": {
+                    "type": "boolean"
+                },
+                "delete_contact": {
+                    "type": "boolean"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+            }
+
+        },
+        "site_customer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "id_site": {
+                    "type": "integer"
+                },
+                "id_customer": {
+                    "type": "integer"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+            }
+
+        },
+        "site_rule": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "modify_site": {
+                    "type": "boolean"
+                },
+                "create_site": {
+                    "type": "boolean"
+                },
+                "delete_site": {
+                    "type": "boolean"
+                },
+                "id_site": {
+                    "type": "integer"
+                },
+                "id_contact": {
+                    "type": "integer"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+
+            }
+
+        },
+        "site": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "icon_path": {
+                    "type": "string"
+                },
+                "private_key": {
+                    "type": "string"
+                },
+                "public_key": {
+                    "type": "string"
+                },
+                "url_amazon": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                }
+            }
+
+        },
+        "tracking": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "id_notification": {
+                    "type": "string"
+                },
+                "id_customer": {
+                    "type": "integer"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+
+        },
+        "ListAccount": {
+            "type":"array",
+            "items": {
+                "$ref": "/definitions/Account"
+            }
+        }
+
+
+
+    }
+}
