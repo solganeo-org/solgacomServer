@@ -1,0 +1,125 @@
+@startuml
+
+skinparam linetype ortho
+
+    class account {
+
+        - id: UNSIGNED BIG INT
+        - society_name: VARCHAR(50)
+        - siret: VARCHAR(14)
+        - country: VARCHAR(5)
+        - phone_number: VARCHAR(20)
+        - email: VARCHAR(255)
+        - nb_employees: INT
+        - icon_path: VARCHAR(255)
+        - active: BOOLEAN
+    }
+
+    class contact {
+
+        - id: UNSIGNED INT AUTO_INCREMENT
+        - first_name: VARCHAR(100)
+        - last_name: VARCHAR(100)
+        - email: VARCHAR(255)
+        - function: VARCHAR(50)
+        - icon_path: VARCHAR(255)
+        - username: VARCHAR(255)
+        - password: VARCHAR(255)
+        - last_modification: DATETIME 
+        - active: BOOLEAN
+
+    }
+
+    class site {
+
+        - id: UNSIGNED BIG INT
+        - name: VARCHAR(255)
+        - url: VARCHAR(255)
+        - domain: VARCHAR(255)
+        - icon_path: VARCHAR(255)
+        - private_key: VARCHAR(255)
+        - public_key: VARCHAT(255)
+        - active: BOOLEAN
+
+    }
+
+    class profile {
+
+        - id: UNSIGNED BIG INT
+        - name: VARCHAR(255)
+        - read_site: BOOLEAN
+        - modify_site: BOOLEAN
+        - delete_site: BOOLEAN
+        - create_contact: BOOLEAN
+        - modify_contact: BOOLEAN
+        - delete_contact: BOOLEAN
+        - active BOOLEAN
+
+    }
+
+    class site_rule {
+
+        - id: UNSIGNED BIG INT
+        - name: VARCHAR(255)
+        - modify_site: BOOLEAN
+        - read_dashboard: BOOLEAN
+
+    }
+
+    class customer {
+
+        - id: UNSIGNED BIG INT
+        - endpoint: VARCHAR(100)
+        - key_auth: VARCHAR(100)
+        - key_p256dh: VARCHAR(100)
+        - device: VARCHAR(20)
+        - active: BOOLEAN
+
+    }
+
+    class automation {
+
+        - id: UNSIGNED BIG INT
+        - sql: VARCHAR(100)
+        - filter: VARCHAR(255)
+        - frecuency: VARCHAR(255)
+        - active: BOOLEAN
+
+    }
+
+    class notification {
+
+        - id: UNSIGNED BIG INT
+        - title: VARCHAR(200)
+        - content: VARCHAR(500)
+        - status: ENUM('Draft', 'Sent', 'Pending')
+        - active: BOOLEAN
+
+    }
+
+    class tracking {
+
+        - id: UNSIGNED BIG INT
+        - status: ENUM('Received', 'Clicked')
+        - active: BOOLEAN
+
+    }
+
+    
+
+    account "1"-up-"1..*" contact : belongs >
+    contact "1..*"-right-"*" site : admin >
+
+    site "*"-right-"*" customer : content >
+    site "*"-down-"1" account 
+
+    contact "1..*"-left-"1" profile : use >
+    automation "1..*"-down-"1" notification : send >
+
+    contact "1"-down-"*" automation : create > 
+
+    notification "*"-left-"*" customer 
+    (notification, customer) .. tracking
+
+
+@enduml

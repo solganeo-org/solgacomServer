@@ -1,0 +1,13 @@
+@startuml
+:Client;
+
+if (Navigator supports?) then (yes)
+  if (Do you accept Notifications?) then (yes)
+    : Install service worker;
+    : Send subscription object\nto WebPush server;
+   else ()
+    stop
+   endif
+endif
+stop
+@enduml
