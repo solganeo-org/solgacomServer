@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS contact (
 -- Table Structure for 'site'
 --
 
+
 CREATE TABLE IF NOT EXISTS site (
 
     id BIGINT UNSIGNED,
@@ -101,6 +102,7 @@ CREATE TABLE IF NOT EXISTS profile (
     modify_contact BOOLEAN NOT NULL DEFAULT '0',
     delete_contact BOOLEAN NOT NULL DEFAULT '0',
     id_account BIGINT UNSIGNED,
+
     active BOOLEAN NOT NULL DEFAULT '1'
     
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -108,6 +110,9 @@ CREATE TABLE IF NOT EXISTS profile (
 --
 -- Table Structure for 'customer'
 --
+
+INSERT INTO profile (name, read_site, create_contact, modify_contact, delete_contact, active) VALUES ("Admin", '1', '1', '1', '1', '1');
+
 
 CREATE TABLE IF NOT EXISTS customer (
 
