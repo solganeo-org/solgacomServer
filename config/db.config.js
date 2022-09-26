@@ -15,7 +15,7 @@ dbConn.connect(function (err) {
   if (err) throw err
 
   console.log('Database Connected!')
-  console.log('Deploy Test!')
+  console.log('Deploy Test2!')
 })
 
 module.exports = dbConn
