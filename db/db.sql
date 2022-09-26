@@ -105,6 +105,9 @@ CREATE TABLE IF NOT EXISTS profile (
     
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `profile` (`id`, `name`, `read_site`, `create_contact`, `modify_contact`, `delete_contact`, `id_account`, `active`) VALUES
+(1, 'Admin', 1, 1, 1, 1, 1, 1);
+
 --
 -- Table Structure for 'customer'
 --
